@@ -131,14 +131,4 @@ bnpl_advisor_mobile/
 └── README.md
 ```
 
-## Competition demo flow
 
-1. Start Postgres + API (`docker compose up`).
-2. `flutter run`, open drawer → **Upload CSV** (bundled sample or your file) for SME 1.
-3. **Health** — KPIs and chart refresh after upload.
-4. **Simulate** — enter amount/category → **Calculate AI recommendation** → review SHAP-style factors.
-5. **Grants** — filter schemes; **Performance** — history + model transparency.
-
----
-
-Good luck at **APC2026**.
