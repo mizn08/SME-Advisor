@@ -1,0 +1,15 @@
+mobile_app/
+flutter/
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.mypy_cache
+**/.venv
+**/venv
+**/.git
+**/.idea
+**/*.md
+bnpl_local.db
+backend/bnpl_local.db
+**/.dart_tool
+**/build

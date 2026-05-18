@@ -1,0 +1,641 @@
+sme_id,date,amount,category,description,is_expense
+1,2024-11-23,3556.1,Utilities,Synthetic line item 0,true
+1,2024-02-22,2647.65,Utilities,Synthetic line item 1,true
+1,2024-10-14,12188.47,Sales - Retail,Synthetic line item 2,false
+1,2024-08-17,11852.87,Sales - Wholesale,Synthetic line item 3,false
+1,2024-03-20,8882.65,Sales - Retail,Synthetic line item 4,false
+1,2024-02-19,6735.68,Digital / Software,Synthetic line item 5,true
+1,2024-08-23,3607.15,Utilities,Synthetic line item 6,true
+1,2024-11-17,5247.52,Digital / Software,Synthetic line item 7,true
+1,2024-04-26,8676.01,Sales - Wholesale,Synthetic line item 8,false
+1,2024-07-05,3274.97,Logistics,Synthetic line item 9,true
+1,2024-02-06,3082.96,Logistics,Synthetic line item 10,true
+1,2024-05-18,8507.27,Sales - Retail,Synthetic line item 11,false
+1,2024-04-18,4424.24,Digital / Software,Synthetic line item 12,true
+1,2024-11-25,5008.74,Marketing,Synthetic line item 13,true
+1,2024-08-07,4356.84,Equipment,Synthetic line item 14,true
+1,2024-02-26,6569.64,Logistics,Synthetic line item 15,true
+1,2024-02-02,6020.69,Equipment,Synthetic line item 16,true
+1,2024-05-16,4055.43,Digital / Software,Synthetic line item 17,true
+1,2024-05-14,1976.52,Logistics,Synthetic line item 18,true
+1,2024-11-23,6904.72,Sales - Retail,Synthetic line item 19,true
+1,2024-09-28,4403.24,Supplies,Synthetic line item 20,true
+1,2024-07-04,2800.7,Sales - Wholesale,Synthetic line item 21,true
+1,2024-02-10,4577.37,Utilities,Synthetic line item 22,true
+1,2024-08-31,7320.32,Logistics,Synthetic line item 23,true
+1,2024-04-18,8227.79,Sales - Retail,Synthetic line item 24,false
+1,2024-07-10,4231.04,Marketing,Synthetic line item 25,true
+1,2024-02-02,4920.39,Digital / Software,Synthetic line item 26,true
+1,2024-01-04,2590.84,Utilities,Synthetic line item 27,true
+1,2024-09-20,4339.71,Sales - Retail,Synthetic line item 28,true
+1,2024-10-19,4293.3,Marketing,Synthetic line item 29,true
+1,2024-02-18,3673.86,Utilities,Synthetic line item 30,true
+1,2024-01-28,10759.1,Utilities,Synthetic line item 31,true
+1,2024-02-25,4594.33,Sales - Retail,Synthetic line item 32,true
+1,2024-04-03,1821.92,Sales - Wholesale,Synthetic line item 33,true
+1,2024-10-03,2695.06,Supplies,Synthetic line item 34,true
+1,2024-04-19,1406.4,Equipment,Synthetic line item 35,true
+1,2024-08-20,5181.71,Sales - Wholesale,Synthetic line item 36,true
+1,2024-03-20,5060.65,Sales - Retail,Synthetic line item 37,true
+1,2024-01-30,4514.01,Supplies,Synthetic line item 38,true
+1,2024-03-21,2986.53,Supplies,Synthetic line item 39,true
+1,2024-10-31,3525.35,Utilities,Synthetic line item 40,true
+1,2024-10-18,12299.79,Sales - Retail,Synthetic line item 41,false
+1,2024-06-10,5537.08,Sales - Wholesale,Synthetic line item 42,true
+1,2024-07-21,3548.25,Logistics,Synthetic line item 43,true
+1,2024-02-07,2925.79,Supplies,Synthetic line item 44,true
+1,2024-05-15,3945.82,Logistics,Synthetic line item 45,true
+1,2024-10-05,6919.78,Sales - Wholesale,Synthetic line item 46,false
+1,2024-03-09,2255.2,Sales - Wholesale,Synthetic line item 47,true
+1,2024-05-19,11661.7,Sales - Wholesale,Synthetic line item 48,false
+1,2024-11-20,3835.93,Sales - Wholesale,Synthetic line item 49,true
+1,2024-05-14,4768.14,Logistics,Synthetic line item 50,true
+1,2024-01-05,5501.53,Utilities,Synthetic line item 51,true
+1,2024-10-25,2548.59,Logistics,Synthetic line item 52,true
+1,2024-01-21,3584.9,Digital / Software,Synthetic line item 53,true
+1,2024-10-13,3488.86,Equipment,Synthetic line item 54,true
+1,2024-03-31,5845.73,Equipment,Synthetic line item 55,true
+1,2024-07-29,5702.94,Sales - Retail,Synthetic line item 56,true
+1,2024-01-20,6994.28,Marketing,Synthetic line item 57,true
+1,2024-06-05,5460.97,Sales - Retail,Synthetic line item 58,true
+1,2024-05-22,2763.89,Utilities,Synthetic line item 59,true
+1,2024-07-23,3629.79,Digital / Software,Synthetic line item 60,true
+1,2024-08-10,3086.32,Digital / Software,Synthetic line item 61,true
+1,2024-09-18,4814.24,Utilities,Synthetic line item 62,true
+1,2024-08-11,9467.67,Supplies,Synthetic line item 63,true
+1,2024-04-10,5898.45,Digital / Software,Synthetic line item 64,true
+1,2024-03-04,5384.11,Sales - Wholesale,Synthetic line item 65,true
+1,2024-05-31,5459.31,Logistics,Synthetic line item 66,true
+1,2024-03-30,6438.78,Sales - Wholesale,Synthetic line item 67,true
+1,2024-04-17,5021.54,Equipment,Synthetic line item 68,true
+1,2024-08-14,4636.99,Marketing,Synthetic line item 69,true
+1,2024-03-27,6199.54,Utilities,Synthetic line item 70,true
+1,2024-02-17,8051.03,Sales - Retail,Synthetic line item 71,false
+1,2024-01-13,3913.79,Supplies,Synthetic line item 72,true
+1,2024-02-07,5035.95,Marketing,Synthetic line item 73,true
+1,2024-07-15,1861.31,Marketing,Synthetic line item 74,true
+1,2024-02-24,9624.26,Equipment,Synthetic line item 75,true
+1,2024-08-25,2620.9,Supplies,Synthetic line item 76,true
+1,2024-09-28,9702.27,Digital / Software,Synthetic line item 77,true
+1,2024-09-15,6371.1,Equipment,Synthetic line item 78,true
+1,2024-08-31,2595.35,Marketing,Synthetic line item 79,true
+1,2024-09-23,3682.61,Marketing,Synthetic line item 80,true
+1,2024-05-26,3285.68,Sales - Retail,Synthetic line item 81,true
+1,2024-03-11,7405.68,Logistics,Synthetic line item 82,true
+1,2024-02-02,4704.65,Equipment,Synthetic line item 83,true
+1,2024-04-15,4972.71,Equipment,Synthetic line item 84,true
+1,2024-06-29,8163.46,Sales - Wholesale,Synthetic line item 85,false
+1,2024-10-06,3162.77,Sales - Retail,Synthetic line item 86,true
+1,2024-07-18,10244.22,Digital / Software,Synthetic line item 87,true
+1,2024-08-27,5901.97,Logistics,Synthetic line item 88,true
+1,2024-10-30,2939.81,Supplies,Synthetic line item 89,true
+1,2024-04-03,3482.76,Supplies,Synthetic line item 90,true
+1,2024-06-21,8120.79,Equipment,Synthetic line item 91,true
+1,2024-02-11,3193.67,Marketing,Synthetic line item 92,true
+1,2024-01-21,3271.09,Supplies,Synthetic line item 93,true
+1,2024-02-28,3300.5,Sales - Retail,Synthetic line item 94,true
+1,2024-11-06,3051.07,Utilities,Synthetic line item 95,true
+1,2024-10-23,8401.82,Supplies,Synthetic line item 96,true
+1,2024-07-11,2512.58,Equipment,Synthetic line item 97,true
+1,2024-11-17,4857.08,Sales - Retail,Synthetic line item 98,true
+1,2024-10-16,4073.09,Supplies,Synthetic line item 99,true
+1,2024-09-16,3940.04,Digital / Software,Synthetic line item 100,true
+1,2024-08-09,10582.76,Digital / Software,Synthetic line item 101,true
+1,2024-08-10,7275.75,Logistics,Synthetic line item 102,true
+1,2024-10-02,8242.42,Marketing,Synthetic line item 103,true
+1,2024-06-14,7425.63,Sales - Retail,Synthetic line item 104,false
+1,2024-11-08,4418.2,Equipment,Synthetic line item 105,true
+1,2024-09-06,3432.44,Sales - Retail,Synthetic line item 106,true
+1,2024-11-01,10020.03,Sales - Wholesale,Synthetic line item 107,false
+1,2024-05-03,8469.01,Equipment,Synthetic line item 108,true
+1,2024-09-08,2970.27,Marketing,Synthetic line item 109,true
+1,2024-05-04,8298.87,Sales - Wholesale,Synthetic line item 110,false
+1,2024-06-25,4722.12,Equipment,Synthetic line item 111,true
+1,2024-08-20,2108.31,Sales - Wholesale,Synthetic line item 112,true
+1,2024-06-10,1788.29,Utilities,Synthetic line item 113,true
+1,2024-05-21,13144.97,Sales - Wholesale,Synthetic line item 114,false
+1,2024-07-03,5344.7,Logistics,Synthetic line item 115,true
+1,2024-01-24,5294.54,Supplies,Synthetic line item 116,true
+1,2024-09-08,4953.05,Utilities,Synthetic line item 117,true
+1,2024-08-13,4037.37,Digital / Software,Synthetic line item 118,true
+1,2024-07-24,4942.32,Marketing,Synthetic line item 119,true
+1,2024-03-17,2864.43,Sales - Wholesale,Synthetic line item 120,true
+1,2024-08-01,4514.22,Sales - Retail,Synthetic line item 121,false
+1,2024-06-01,5649.61,Equipment,Synthetic line item 122,true
+1,2024-02-20,8486.22,Sales - Retail,Synthetic line item 123,false
+1,2024-05-02,2840.44,Logistics,Synthetic line item 124,true
+1,2024-10-31,2192.08,Marketing,Synthetic line item 125,true
+1,2024-08-20,5913.2,Utilities,Synthetic line item 126,true
+1,2024-04-11,3464.64,Equipment,Synthetic line item 127,true
+1,2024-05-16,3064.12,Logistics,Synthetic line item 128,true
+1,2024-10-18,4295.3,Sales - Wholesale,Synthetic line item 129,true
+1,2024-07-25,4423.96,Sales - Wholesale,Synthetic line item 130,true
+1,2024-01-21,4828.02,Equipment,Synthetic line item 131,true
+1,2024-04-27,5335.13,Supplies,Synthetic line item 132,true
+1,2024-01-21,17919.22,Logistics,Synthetic line item 133,true
+1,2024-04-02,4415.92,Equipment,Synthetic line item 134,true
+1,2024-06-27,11194.76,Equipment,Synthetic line item 135,true
+1,2024-06-17,7616.31,Equipment,Synthetic line item 136,true
+1,2024-08-20,3818.45,Utilities,Synthetic line item 137,true
+1,2024-01-01,3047.58,Marketing,Synthetic line item 138,true
+1,2024-09-12,2676.66,Marketing,Synthetic line item 139,true
+1,2024-05-27,4393.35,Marketing,Synthetic line item 140,true
+1,2024-11-18,9216.43,Sales - Retail,Synthetic line item 141,false
+1,2024-02-28,5088.73,Marketing,Synthetic line item 142,true
+1,2024-05-29,4334.68,Sales - Wholesale,Synthetic line item 143,true
+1,2024-08-21,8623.7,Logistics,Synthetic line item 144,true
+1,2024-03-10,6520.23,Utilities,Synthetic line item 145,true
+1,2024-09-16,8218.23,Sales - Wholesale,Synthetic line item 146,false
+1,2024-10-27,4105.06,Marketing,Synthetic line item 147,true
+1,2024-06-19,3753.42,Equipment,Synthetic line item 148,true
+1,2024-05-02,8441.08,Equipment,Synthetic line item 149,true
+1,2024-07-14,8507.2,Equipment,Synthetic line item 150,true
+1,2024-03-18,3850.02,Marketing,Synthetic line item 151,true
+1,2024-08-13,3944.99,Utilities,Synthetic line item 152,true
+1,2024-07-28,5977.17,Logistics,Synthetic line item 153,true
+1,2024-11-15,6956.55,Equipment,Synthetic line item 154,true
+1,2024-06-11,16003.38,Marketing,Synthetic line item 155,true
+1,2024-04-26,1907.59,Utilities,Synthetic line item 156,true
+1,2024-02-21,3852.04,Marketing,Synthetic line item 157,true
+1,2024-07-02,3178.38,Digital / Software,Synthetic line item 158,true
+1,2024-04-02,5099.48,Logistics,Synthetic line item 159,true
+1,2024-05-03,2667.0,Marketing,Synthetic line item 160,true
+1,2024-05-10,2771.22,Marketing,Synthetic line item 161,true
+1,2024-06-25,9315.13,Sales - Wholesale,Synthetic line item 162,false
+1,2024-06-03,8856.25,Sales - Retail,Synthetic line item 163,false
+1,2024-05-31,6779.74,Sales - Wholesale,Synthetic line item 164,true
+1,2024-01-05,13797.74,Supplies,Synthetic line item 165,true
+1,2024-05-26,7754.14,Sales - Retail,Synthetic line item 166,false
+1,2024-11-13,14606.46,Sales - Wholesale,Synthetic line item 167,false
+1,2024-03-11,5236.85,Utilities,Synthetic line item 168,true
+1,2024-08-13,5416.19,Supplies,Synthetic line item 169,true
+1,2024-05-31,3332.46,Digital / Software,Synthetic line item 170,true
+1,2024-10-03,1525.08,Digital / Software,Synthetic line item 171,true
+1,2024-09-03,8871.1,Sales - Wholesale,Synthetic line item 172,false
+1,2024-02-08,2311.32,Logistics,Synthetic line item 173,true
+1,2024-07-22,3981.25,Digital / Software,Synthetic line item 174,true
+1,2024-03-04,5770.63,Marketing,Synthetic line item 175,true
+1,2024-07-14,8745.63,Digital / Software,Synthetic line item 176,true
+1,2024-11-08,11519.05,Sales - Retail,Synthetic line item 177,false
+1,2024-06-03,2856.33,Equipment,Synthetic line item 178,true
+1,2024-07-17,4794.34,Marketing,Synthetic line item 179,true
+1,2024-03-20,8692.75,Equipment,Synthetic line item 180,true
+1,2024-05-23,3001.74,Supplies,Synthetic line item 181,true
+1,2024-04-30,6091.62,Digital / Software,Synthetic line item 182,true
+1,2024-07-02,3385.35,Supplies,Synthetic line item 183,true
+1,2024-08-20,5834.52,Utilities,Synthetic line item 184,true
+1,2024-01-11,3545.8,Supplies,Synthetic line item 185,true
+1,2024-10-16,5757.06,Sales - Retail,Synthetic line item 186,true
+1,2024-04-20,3244.51,Sales - Retail,Synthetic line item 187,true
+1,2024-05-08,6160.05,Logistics,Synthetic line item 188,true
+1,2024-07-02,6720.83,Sales - Retail,Synthetic line item 189,false
+1,2024-02-28,6911.38,Utilities,Synthetic line item 190,true
+1,2024-02-25,4585.05,Marketing,Synthetic line item 191,true
+1,2024-01-16,7096.19,Supplies,Synthetic line item 192,true
+1,2024-02-25,2885.58,Marketing,Synthetic line item 193,true
+1,2024-06-13,2770.12,Logistics,Synthetic line item 194,true
+1,2024-10-07,4947.46,Digital / Software,Synthetic line item 195,true
+1,2024-09-15,12812.49,Equipment,Synthetic line item 196,true
+1,2024-10-09,7413.83,Sales - Retail,Synthetic line item 197,true
+1,2024-08-20,2577.81,Equipment,Synthetic line item 198,true
+1,2024-05-10,5850.77,Digital / Software,Synthetic line item 199,true
+1,2024-02-16,7650.53,Utilities,Synthetic line item 200,true
+1,2024-10-27,2579.19,Digital / Software,Synthetic line item 201,true
+1,2024-08-04,5011.83,Supplies,Synthetic line item 202,true
+1,2024-10-22,4064.2,Sales - Retail,Synthetic line item 203,true
+1,2024-06-28,3565.64,Digital / Software,Synthetic line item 204,true
+1,2024-08-07,6617.65,Supplies,Synthetic line item 205,true
+1,2024-01-15,3864.18,Logistics,Synthetic line item 206,true
+1,2024-03-14,2272.79,Equipment,Synthetic line item 207,true
+1,2024-07-11,3028.4,Equipment,Synthetic line item 208,true
+1,2024-06-15,4120.6,Utilities,Synthetic line item 209,true
+1,2024-11-06,2834.8,Marketing,Synthetic line item 210,true
+1,2024-06-25,6236.35,Equipment,Synthetic line item 211,true
+1,2024-09-26,3634.41,Sales - Wholesale,Synthetic line item 212,true
+1,2024-01-04,3434.47,Sales - Retail,Synthetic line item 213,true
+1,2024-05-10,2969.23,Sales - Wholesale,Synthetic line item 214,true
+1,2024-04-27,8594.94,Digital / Software,Synthetic line item 215,true
+1,2024-10-20,4138.92,Equipment,Synthetic line item 216,true
+1,2024-01-11,8434.01,Digital / Software,Synthetic line item 217,true
+1,2024-07-04,2593.66,Utilities,Synthetic line item 218,true
+1,2024-07-24,3562.6,Utilities,Synthetic line item 219,true
+2,2024-06-19,7751.02,Logistics,Synthetic line item 220,true
+2,2024-04-09,4956.9,Digital / Software,Synthetic line item 221,true
+2,2024-03-19,9441.25,Utilities,Synthetic line item 222,true
+2,2024-10-15,14222.86,Marketing,Synthetic line item 223,true
+2,2024-11-15,6989.36,Digital / Software,Synthetic line item 224,true
+2,2024-02-04,5047.3,Marketing,Synthetic line item 225,true
+2,2024-01-29,4766.79,Digital / Software,Synthetic line item 226,true
+2,2024-01-30,12694.3,Digital / Software,Synthetic line item 227,true
+2,2024-09-16,7615.11,Equipment,Synthetic line item 228,true
+2,2024-01-22,6664.95,Marketing,Synthetic line item 229,true
+2,2024-11-05,11843.67,Marketing,Synthetic line item 230,true
+2,2024-06-24,4449.04,Utilities,Synthetic line item 231,true
+2,2024-08-12,7113.39,Marketing,Synthetic line item 232,true
+2,2024-05-24,4564.96,Equipment,Synthetic line item 233,true
+2,2024-11-19,3406.03,Digital / Software,Synthetic line item 234,true
+2,2024-11-04,6706.74,Logistics,Synthetic line item 235,true
+2,2024-06-28,16856.12,Sales - Wholesale,Synthetic line item 236,false
+2,2024-10-31,3942.27,Utilities,Synthetic line item 237,true
+2,2024-03-06,5674.96,Utilities,Synthetic line item 238,true
+2,2024-07-04,6141.16,Sales - Wholesale,Synthetic line item 239,true
+2,2024-03-11,3630.89,Logistics,Synthetic line item 240,true
+2,2024-03-08,2791.47,Equipment,Synthetic line item 241,true
+2,2024-11-15,3577.21,Logistics,Synthetic line item 242,true
+2,2024-05-01,15331.88,Marketing,Synthetic line item 243,true
+2,2024-04-29,9751.48,Sales - Retail,Synthetic line item 244,true
+2,2024-04-09,6861.3,Digital / Software,Synthetic line item 245,true
+2,2024-05-24,5776.4,Equipment,Synthetic line item 246,true
+2,2024-04-12,3199.94,Logistics,Synthetic line item 247,true
+2,2024-07-09,6313.87,Utilities,Synthetic line item 248,true
+2,2024-02-12,2529.26,Logistics,Synthetic line item 249,true
+2,2024-04-23,10986.68,Marketing,Synthetic line item 250,true
+2,2024-07-21,11466.84,Digital / Software,Synthetic line item 251,true
+2,2024-01-15,13154.27,Digital / Software,Synthetic line item 252,true
+2,2024-03-15,11467.5,Logistics,Synthetic line item 253,true
+2,2024-03-12,1987.76,Marketing,Synthetic line item 254,true
+2,2024-10-07,4926.57,Equipment,Synthetic line item 255,true
+2,2024-01-25,9455.94,Sales - Retail,Synthetic line item 256,true
+2,2024-02-26,4933.74,Marketing,Synthetic line item 257,true
+2,2024-08-07,4416.89,Supplies,Synthetic line item 258,true
+2,2024-02-13,6485.38,Digital / Software,Synthetic line item 259,true
+2,2024-09-16,5844.12,Supplies,Synthetic line item 260,true
+2,2024-07-10,12637.82,Sales - Wholesale,Synthetic line item 261,false
+2,2024-05-03,8172.11,Utilities,Synthetic line item 262,true
+2,2024-01-23,8348.75,Digital / Software,Synthetic line item 263,true
+2,2024-08-25,9224.58,Marketing,Synthetic line item 264,true
+2,2024-05-30,12417.06,Sales - Retail,Synthetic line item 265,true
+2,2024-10-05,7928.39,Marketing,Synthetic line item 266,true
+2,2024-07-01,5368.34,Supplies,Synthetic line item 267,true
+2,2024-07-07,6189.68,Equipment,Synthetic line item 268,true
+2,2024-09-22,16066.69,Sales - Wholesale,Synthetic line item 269,false
+2,2024-11-04,5358.48,Logistics,Synthetic line item 270,true
+2,2024-05-31,7616.76,Sales - Wholesale,Synthetic line item 271,true
+2,2024-08-15,7283.62,Digital / Software,Synthetic line item 272,true
+2,2024-11-23,7355.52,Supplies,Synthetic line item 273,true
+2,2024-03-22,9101.68,Supplies,Synthetic line item 274,true
+2,2024-01-18,8741.01,Logistics,Synthetic line item 275,true
+2,2024-07-15,4102.82,Supplies,Synthetic line item 276,true
+2,2024-10-20,4973.36,Logistics,Synthetic line item 277,true
+2,2024-05-07,3766.5,Utilities,Synthetic line item 278,true
+2,2024-10-14,4457.2,Utilities,Synthetic line item 279,true
+2,2024-11-09,6979.63,Sales - Wholesale,Synthetic line item 280,false
+2,2024-02-14,8919.03,Digital / Software,Synthetic line item 281,true
+2,2024-05-28,20686.57,Sales - Wholesale,Synthetic line item 282,false
+2,2024-09-17,4761.91,Sales - Retail,Synthetic line item 283,true
+2,2024-09-09,6913.54,Supplies,Synthetic line item 284,true
+2,2024-10-09,3920.59,Logistics,Synthetic line item 285,true
+2,2024-09-02,5517.87,Equipment,Synthetic line item 286,true
+2,2024-06-25,11351.75,Logistics,Synthetic line item 287,true
+2,2024-04-03,4420.08,Logistics,Synthetic line item 288,true
+2,2024-03-25,7971.11,Logistics,Synthetic line item 289,true
+2,2024-09-22,9192.54,Sales - Wholesale,Synthetic line item 290,false
+2,2024-10-09,4492.62,Sales - Wholesale,Synthetic line item 291,true
+2,2024-09-14,6711.59,Logistics,Synthetic line item 292,true
+2,2024-11-15,8246.08,Digital / Software,Synthetic line item 293,true
+2,2024-01-15,8058.56,Utilities,Synthetic line item 294,true
+2,2024-04-17,6868.7,Equipment,Synthetic line item 295,true
+2,2024-06-03,9283.36,Marketing,Synthetic line item 296,true
+2,2024-08-20,3963.1,Utilities,Synthetic line item 297,true
+2,2024-08-25,5104.84,Sales - Retail,Synthetic line item 298,true
+2,2024-07-08,6009.75,Utilities,Synthetic line item 299,true
+2,2024-05-06,4786.22,Logistics,Synthetic line item 300,true
+2,2024-11-11,8708.73,Equipment,Synthetic line item 301,true
+2,2024-06-16,5037.26,Digital / Software,Synthetic line item 302,true
+2,2024-09-11,5348.81,Supplies,Synthetic line item 303,true
+2,2024-05-03,9503.08,Sales - Retail,Synthetic line item 304,false
+2,2024-11-01,4239.76,Marketing,Synthetic line item 305,true
+2,2024-07-06,5207.56,Equipment,Synthetic line item 306,true
+2,2024-04-09,3204.67,Digital / Software,Synthetic line item 307,true
+2,2024-10-08,16759.51,Sales - Wholesale,Synthetic line item 308,false
+2,2024-03-06,8786.13,Utilities,Synthetic line item 309,true
+2,2024-07-06,6314.22,Logistics,Synthetic line item 310,true
+2,2024-01-24,4873.43,Supplies,Synthetic line item 311,true
+2,2024-08-21,6337.78,Logistics,Synthetic line item 312,true
+2,2024-11-09,4929.16,Digital / Software,Synthetic line item 313,true
+2,2024-09-17,2690.88,Marketing,Synthetic line item 314,true
+2,2024-07-07,14335.78,Digital / Software,Synthetic line item 315,true
+2,2024-11-18,3680.9,Supplies,Synthetic line item 316,true
+2,2024-10-23,14719.55,Sales - Retail,Synthetic line item 317,false
+2,2024-11-18,7190.67,Equipment,Synthetic line item 318,true
+2,2024-02-26,5255.23,Sales - Retail,Synthetic line item 319,true
+2,2024-04-14,7327.15,Equipment,Synthetic line item 320,true
+2,2024-02-01,6061.29,Logistics,Synthetic line item 321,true
+2,2024-03-29,5156.25,Marketing,Synthetic line item 322,true
+2,2024-11-25,10842.66,Sales - Wholesale,Synthetic line item 323,false
+2,2024-10-12,10469.75,Sales - Wholesale,Synthetic line item 324,true
+2,2024-05-27,13681.22,Sales - Retail,Synthetic line item 325,false
+2,2024-10-13,7049.03,Sales - Wholesale,Synthetic line item 326,true
+2,2024-07-21,8672.34,Digital / Software,Synthetic line item 327,true
+2,2024-05-27,5864.34,Utilities,Synthetic line item 328,true
+2,2024-09-02,9712.16,Sales - Retail,Synthetic line item 329,true
+2,2024-05-19,7950.04,Logistics,Synthetic line item 330,true
+2,2024-01-26,8764.69,Sales - Retail,Synthetic line item 331,false
+2,2024-08-29,16737.42,Utilities,Synthetic line item 332,true
+2,2024-08-31,8214.45,Marketing,Synthetic line item 333,true
+2,2024-05-26,2958.0,Supplies,Synthetic line item 334,true
+2,2024-09-30,11765.99,Supplies,Synthetic line item 335,true
+2,2024-09-10,6602.77,Logistics,Synthetic line item 336,true
+2,2024-06-20,7830.72,Sales - Wholesale,Synthetic line item 337,true
+2,2024-03-09,8889.78,Marketing,Synthetic line item 338,true
+2,2024-08-22,8922.54,Sales - Wholesale,Synthetic line item 339,false
+2,2024-05-31,10480.29,Sales - Retail,Synthetic line item 340,true
+2,2024-02-14,4690.58,Equipment,Synthetic line item 341,true
+2,2024-06-14,5292.36,Sales - Retail,Synthetic line item 342,true
+2,2024-05-16,9160.32,Digital / Software,Synthetic line item 343,true
+2,2024-02-01,2696.39,Utilities,Synthetic line item 344,true
+2,2024-06-08,10660.71,Utilities,Synthetic line item 345,true
+2,2024-04-23,13526.9,Sales - Retail,Synthetic line item 346,false
+2,2024-11-06,6689.53,Digital / Software,Synthetic line item 347,true
+2,2024-10-02,18112.87,Sales - Retail,Synthetic line item 348,false
+2,2024-02-11,1714.92,Marketing,Synthetic line item 349,true
+2,2024-02-27,9193.98,Supplies,Synthetic line item 350,true
+2,2024-10-01,10165.55,Logistics,Synthetic line item 351,true
+2,2024-04-15,6492.09,Marketing,Synthetic line item 352,true
+2,2024-08-20,6009.38,Logistics,Synthetic line item 353,true
+2,2024-08-24,9858.51,Sales - Wholesale,Synthetic line item 354,false
+2,2024-04-21,5476.8,Utilities,Synthetic line item 355,true
+2,2024-01-31,6040.42,Utilities,Synthetic line item 356,true
+2,2024-04-02,3104.56,Logistics,Synthetic line item 357,true
+2,2024-07-12,5663.9,Equipment,Synthetic line item 358,true
+2,2024-04-24,12386.37,Supplies,Synthetic line item 359,true
+2,2024-10-05,8675.1,Equipment,Synthetic line item 360,true
+2,2024-06-26,4769.41,Logistics,Synthetic line item 361,true
+2,2024-01-09,8029.59,Sales - Retail,Synthetic line item 362,true
+2,2024-01-25,12833.68,Sales - Retail,Synthetic line item 363,false
+2,2024-04-21,13290.62,Supplies,Synthetic line item 364,true
+2,2024-10-22,6402.52,Digital / Software,Synthetic line item 365,true
+2,2024-05-20,8133.34,Supplies,Synthetic line item 366,true
+2,2024-03-30,3651.54,Equipment,Synthetic line item 367,true
+2,2024-11-25,4898.7,Equipment,Synthetic line item 368,true
+2,2024-03-17,9041.01,Sales - Wholesale,Synthetic line item 369,true
+2,2024-04-25,9309.52,Sales - Wholesale,Synthetic line item 370,false
+2,2024-01-30,6552.13,Equipment,Synthetic line item 371,true
+2,2024-05-04,7712.86,Sales - Wholesale,Synthetic line item 372,true
+2,2024-05-17,11674.59,Equipment,Synthetic line item 373,true
+2,2024-04-06,9547.93,Sales - Retail,Synthetic line item 374,true
+2,2024-01-08,9374.82,Sales - Retail,Synthetic line item 375,false
+2,2024-04-14,7447.01,Equipment,Synthetic line item 376,true
+2,2024-07-13,5374.05,Marketing,Synthetic line item 377,true
+2,2024-09-19,14452.56,Marketing,Synthetic line item 378,true
+2,2024-06-12,5348.6,Sales - Retail,Synthetic line item 379,true
+2,2024-04-23,6873.39,Logistics,Synthetic line item 380,true
+2,2024-08-01,5037.6,Sales - Wholesale,Synthetic line item 381,true
+2,2024-05-05,10438.7,Marketing,Synthetic line item 382,true
+2,2024-09-07,8216.16,Marketing,Synthetic line item 383,true
+2,2024-03-12,13068.27,Marketing,Synthetic line item 384,true
+2,2024-02-08,4051.9,Supplies,Synthetic line item 385,true
+2,2024-04-28,4819.05,Utilities,Synthetic line item 386,true
+2,2024-11-11,5807.25,Marketing,Synthetic line item 387,true
+2,2024-05-20,13070.62,Sales - Wholesale,Synthetic line item 388,true
+2,2024-04-01,6382.24,Utilities,Synthetic line item 389,true
+2,2024-11-13,10990.94,Sales - Wholesale,Synthetic line item 390,false
+2,2024-07-10,3234.74,Equipment,Synthetic line item 391,true
+2,2024-06-02,3755.3,Utilities,Synthetic line item 392,true
+2,2024-10-09,6224.69,Marketing,Synthetic line item 393,true
+2,2024-06-18,9476.58,Utilities,Synthetic line item 394,true
+2,2024-10-17,4296.01,Marketing,Synthetic line item 395,true
+2,2024-01-17,8165.56,Logistics,Synthetic line item 396,true
+2,2024-07-22,6977.33,Utilities,Synthetic line item 397,true
+2,2024-07-18,15061.58,Digital / Software,Synthetic line item 398,true
+2,2024-02-10,4607.41,Digital / Software,Synthetic line item 399,true
+2,2024-06-23,4316.21,Equipment,Synthetic line item 400,true
+2,2024-08-18,6647.71,Marketing,Synthetic line item 401,true
+2,2024-04-05,9797.8,Equipment,Synthetic line item 402,true
+2,2024-02-07,4055.41,Utilities,Synthetic line item 403,true
+2,2024-03-19,4940.53,Equipment,Synthetic line item 404,true
+2,2024-05-18,4018.29,Utilities,Synthetic line item 405,true
+2,2024-10-11,3058.83,Equipment,Synthetic line item 406,true
+2,2024-11-01,3275.56,Digital / Software,Synthetic line item 407,true
+2,2024-02-13,10057.8,Sales - Retail,Synthetic line item 408,false
+2,2024-03-12,6190.71,Sales - Wholesale,Synthetic line item 409,true
+2,2024-08-10,6144.33,Sales - Wholesale,Synthetic line item 410,true
+2,2024-05-08,13765.18,Sales - Retail,Synthetic line item 411,false
+2,2024-08-22,3315.56,Utilities,Synthetic line item 412,true
+2,2024-11-13,5108.54,Equipment,Synthetic line item 413,true
+2,2024-10-31,8086.58,Logistics,Synthetic line item 414,true
+2,2024-09-02,5547.44,Digital / Software,Synthetic line item 415,true
+2,2024-11-20,8598.87,Marketing,Synthetic line item 416,true
+2,2024-05-23,9445.62,Equipment,Synthetic line item 417,true
+2,2024-10-06,14177.97,Logistics,Synthetic line item 418,true
+2,2024-08-24,3685.02,Sales - Retail,Synthetic line item 419,true
+2,2024-07-28,5078.63,Marketing,Synthetic line item 420,true
+2,2024-03-19,6061.54,Equipment,Synthetic line item 421,true
+2,2024-09-16,8838.66,Equipment,Synthetic line item 422,true
+2,2024-10-01,3487.06,Utilities,Synthetic line item 423,true
+2,2024-03-26,8547.68,Supplies,Synthetic line item 424,true
+2,2024-06-18,4180.48,Equipment,Synthetic line item 425,true
+2,2024-09-22,4304.03,Sales - Retail,Synthetic line item 426,true
+2,2024-10-28,4164.99,Logistics,Synthetic line item 427,true
+2,2024-08-21,5468.13,Sales - Retail,Synthetic line item 428,true
+2,2024-08-19,3552.6,Digital / Software,Synthetic line item 429,true
+2,2024-02-25,9136.68,Logistics,Synthetic line item 430,true
+2,2024-10-09,5601.6,Logistics,Synthetic line item 431,true
+2,2024-07-26,7611.32,Logistics,Synthetic line item 432,true
+2,2024-11-10,5894.91,Sales - Retail,Synthetic line item 433,true
+2,2024-04-19,13461.39,Sales - Retail,Synthetic line item 434,true
+2,2024-10-22,6511.83,Utilities,Synthetic line item 435,true
+2,2024-04-10,8059.46,Marketing,Synthetic line item 436,true
+2,2024-11-23,7665.88,Digital / Software,Synthetic line item 437,true
+2,2024-06-27,10126.37,Digital / Software,Synthetic line item 438,true
+2,2024-06-01,5151.62,Utilities,Synthetic line item 439,true
+3,2024-02-29,6221.2,Logistics,Synthetic line item 440,true
+3,2024-11-01,8714.27,Logistics,Synthetic line item 441,true
+3,2024-10-02,9692.97,Logistics,Synthetic line item 442,true
+3,2024-06-10,9640.18,Marketing,Synthetic line item 443,true
+3,2024-07-15,9570.31,Marketing,Synthetic line item 444,true
+3,2024-08-15,12528.92,Marketing,Synthetic line item 445,true
+3,2024-04-22,7257.84,Sales - Wholesale,Synthetic line item 446,true
+3,2024-08-22,5481.02,Marketing,Synthetic line item 447,true
+3,2024-01-22,27261.06,Marketing,Synthetic line item 448,true
+3,2024-06-01,5169.98,Supplies,Synthetic line item 449,true
+3,2024-08-12,3346.52,Utilities,Synthetic line item 450,true
+3,2024-10-28,11353.86,Digital / Software,Synthetic line item 451,true
+3,2024-11-11,10983.15,Logistics,Synthetic line item 452,true
+3,2024-11-01,12211.31,Logistics,Synthetic line item 453,true
+3,2024-05-16,13583.1,Utilities,Synthetic line item 454,true
+3,2024-01-31,12934.69,Sales - Wholesale,Synthetic line item 455,false
+3,2024-05-06,10616.8,Equipment,Synthetic line item 456,true
+3,2024-07-31,23132.93,Equipment,Synthetic line item 457,true
+3,2024-02-17,21595.86,Equipment,Synthetic line item 458,true
+3,2024-08-22,14291.89,Digital / Software,Synthetic line item 459,true
+3,2024-08-07,8083.5,Sales - Retail,Synthetic line item 460,true
+3,2024-10-07,9616.25,Logistics,Synthetic line item 461,true
+3,2024-01-25,14676.37,Supplies,Synthetic line item 462,true
+3,2024-03-04,4677.4,Logistics,Synthetic line item 463,true
+3,2024-03-08,15500.16,Sales - Wholesale,Synthetic line item 464,true
+3,2024-07-03,14047.3,Sales - Wholesale,Synthetic line item 465,true
+3,2024-01-27,19954.6,Equipment,Synthetic line item 466,true
+3,2024-08-07,6781.96,Utilities,Synthetic line item 467,true
+3,2024-08-15,8528.24,Supplies,Synthetic line item 468,true
+3,2024-08-04,7775.1,Logistics,Synthetic line item 469,true
+3,2024-02-22,13757.21,Utilities,Synthetic line item 470,true
+3,2024-03-09,11090.48,Logistics,Synthetic line item 471,true
+3,2024-03-25,4058.14,Marketing,Synthetic line item 472,true
+3,2024-07-29,15729.49,Marketing,Synthetic line item 473,true
+3,2024-07-15,8283.14,Digital / Software,Synthetic line item 474,true
+3,2024-05-21,12940.28,Utilities,Synthetic line item 475,true
+3,2024-05-25,11655.87,Supplies,Synthetic line item 476,true
+3,2024-09-22,19122.25,Sales - Retail,Synthetic line item 477,false
+3,2024-05-02,5631.73,Marketing,Synthetic line item 478,true
+3,2024-02-06,18653.76,Supplies,Synthetic line item 479,true
+3,2024-07-06,9918.9,Logistics,Synthetic line item 480,true
+3,2024-09-13,7931.42,Equipment,Synthetic line item 481,true
+3,2024-10-02,7245.74,Logistics,Synthetic line item 482,true
+3,2024-04-14,7768.22,Logistics,Synthetic line item 483,true
+3,2024-11-25,3471.05,Utilities,Synthetic line item 484,true
+3,2024-05-02,10723.55,Supplies,Synthetic line item 485,true
+3,2024-03-30,9742.16,Utilities,Synthetic line item 486,true
+3,2024-09-21,13549.61,Sales - Wholesale,Synthetic line item 487,true
+3,2024-02-02,22887.01,Sales - Wholesale,Synthetic line item 488,false
+3,2024-08-21,13649.37,Digital / Software,Synthetic line item 489,true
+3,2024-03-21,45021.66,Sales - Wholesale,Synthetic line item 490,false
+3,2024-02-29,7821.59,Sales - Retail,Synthetic line item 491,false
+3,2024-04-01,8925.58,Supplies,Synthetic line item 492,true
+3,2024-08-01,5819.06,Digital / Software,Synthetic line item 493,true
+3,2024-09-14,9423.02,Supplies,Synthetic line item 494,true
+3,2024-06-08,9279.34,Digital / Software,Synthetic line item 495,true
+3,2024-05-29,17048.07,Sales - Wholesale,Synthetic line item 496,false
+3,2024-09-09,24971.18,Sales - Retail,Synthetic line item 497,false
+3,2024-03-18,13777.79,Supplies,Synthetic line item 498,true
+3,2024-01-05,21866.37,Digital / Software,Synthetic line item 499,true
+3,2024-06-06,18606.88,Utilities,Synthetic line item 500,true
+3,2024-01-31,18529.09,Logistics,Synthetic line item 501,true
+3,2024-07-09,4577.88,Marketing,Synthetic line item 502,true
+3,2024-08-10,7473.31,Logistics,Synthetic line item 503,true
+3,2024-07-20,8088.51,Digital / Software,Synthetic line item 504,true
+3,2024-04-13,10571.15,Logistics,Synthetic line item 505,true
+3,2024-03-25,8374.46,Marketing,Synthetic line item 506,true
+3,2024-04-16,7961.15,Marketing,Synthetic line item 507,true
+3,2024-03-21,24627.96,Sales - Wholesale,Synthetic line item 508,false
+3,2024-06-16,7235.52,Logistics,Synthetic line item 509,true
+3,2024-09-19,5327.71,Supplies,Synthetic line item 510,true
+3,2024-08-19,12930.57,Sales - Retail,Synthetic line item 511,true
+3,2024-04-11,12985.04,Equipment,Synthetic line item 512,true
+3,2024-10-25,13040.53,Sales - Wholesale,Synthetic line item 513,false
+3,2024-03-06,14311.63,Utilities,Synthetic line item 514,true
+3,2024-01-22,17432.38,Marketing,Synthetic line item 515,true
+3,2024-07-21,11607.92,Marketing,Synthetic line item 516,true
+3,2024-04-19,9316.13,Logistics,Synthetic line item 517,true
+3,2024-11-10,21650.42,Sales - Retail,Synthetic line item 518,false
+3,2024-09-02,8374.56,Supplies,Synthetic line item 519,true
+3,2024-11-25,18083.1,Sales - Retail,Synthetic line item 520,false
+3,2024-09-05,9813.15,Digital / Software,Synthetic line item 521,true
+3,2024-04-02,11539.82,Supplies,Synthetic line item 522,true
+3,2024-01-29,34972.87,Sales - Retail,Synthetic line item 523,false
+3,2024-03-29,5721.51,Logistics,Synthetic line item 524,true
+3,2024-07-02,7507.26,Supplies,Synthetic line item 525,true
+3,2024-03-13,22452.03,Sales - Retail,Synthetic line item 526,false
+3,2024-01-20,10599.22,Utilities,Synthetic line item 527,true
+3,2024-09-01,15424.01,Supplies,Synthetic line item 528,true
+3,2024-06-23,14492.53,Logistics,Synthetic line item 529,true
+3,2024-01-12,17258.34,Logistics,Synthetic line item 530,true
+3,2024-07-21,13453.37,Utilities,Synthetic line item 531,true
+3,2024-11-23,13012.75,Marketing,Synthetic line item 532,true
+3,2024-10-28,12638.6,Logistics,Synthetic line item 533,true
+3,2024-03-31,17288.62,Supplies,Synthetic line item 534,true
+3,2024-10-17,4695.99,Supplies,Synthetic line item 535,true
+3,2024-11-09,13583.96,Sales - Retail,Synthetic line item 536,false
+3,2024-06-18,15297.6,Utilities,Synthetic line item 537,true
+3,2024-06-20,4712.65,Marketing,Synthetic line item 538,true
+3,2024-06-28,25021.62,Sales - Wholesale,Synthetic line item 539,false
+3,2024-08-12,17572.55,Equipment,Synthetic line item 540,true
+3,2024-07-12,5417.13,Digital / Software,Synthetic line item 541,true
+3,2024-10-22,7754.75,Sales - Retail,Synthetic line item 542,true
+3,2024-02-23,13979.72,Utilities,Synthetic line item 543,true
+3,2024-02-08,12914.11,Utilities,Synthetic line item 544,true
+3,2024-03-25,6640.81,Equipment,Synthetic line item 545,true
+3,2024-04-07,18457.95,Equipment,Synthetic line item 546,true
+3,2024-05-15,5852.49,Sales - Wholesale,Synthetic line item 547,true
+3,2024-10-08,8109.22,Marketing,Synthetic line item 548,true
+3,2024-05-30,8212.35,Marketing,Synthetic line item 549,true
+3,2024-02-29,18444.09,Sales - Wholesale,Synthetic line item 550,false
+3,2024-05-15,8522.05,Utilities,Synthetic line item 551,true
+3,2024-07-14,5223.8,Digital / Software,Synthetic line item 552,true
+3,2024-05-14,22785.99,Sales - Retail,Synthetic line item 553,false
+3,2024-02-19,14682.92,Utilities,Synthetic line item 554,true
+3,2024-10-28,19599.79,Sales - Retail,Synthetic line item 555,false
+3,2024-08-31,13639.65,Sales - Retail,Synthetic line item 556,true
+3,2024-09-21,12437.89,Logistics,Synthetic line item 557,true
+3,2024-03-26,14753.09,Sales - Retail,Synthetic line item 558,false
+3,2024-08-10,34507.92,Sales - Retail,Synthetic line item 559,false
+3,2024-05-12,8477.01,Digital / Software,Synthetic line item 560,true
+3,2024-06-15,14236.93,Sales - Wholesale,Synthetic line item 561,true
+3,2024-08-02,5061.28,Utilities,Synthetic line item 562,true
+3,2024-02-21,6354.93,Utilities,Synthetic line item 563,true
+3,2024-10-01,5773.33,Digital / Software,Synthetic line item 564,true
+3,2024-10-19,7990.02,Marketing,Synthetic line item 565,true
+3,2024-11-07,15341.79,Equipment,Synthetic line item 566,true
+3,2024-05-01,7920.35,Supplies,Synthetic line item 567,true
+3,2024-09-08,7246.2,Utilities,Synthetic line item 568,true
+3,2024-08-14,8161.53,Digital / Software,Synthetic line item 569,true
+3,2024-04-06,25690.85,Marketing,Synthetic line item 570,true
+3,2024-09-21,9921.64,Digital / Software,Synthetic line item 571,true
+3,2024-06-08,6854.54,Equipment,Synthetic line item 572,true
+3,2024-07-03,16205.68,Sales - Retail,Synthetic line item 573,true
+3,2024-11-21,6626.0,Utilities,Synthetic line item 574,true
+3,2024-08-16,9364.89,Logistics,Synthetic line item 575,true
+3,2024-06-25,3251.49,Logistics,Synthetic line item 576,true
+3,2024-02-16,12879.73,Sales - Wholesale,Synthetic line item 577,true
+3,2024-04-23,17217.01,Sales - Retail,Synthetic line item 578,false
+3,2024-01-11,6940.62,Supplies,Synthetic line item 579,true
+3,2024-01-05,13733.08,Sales - Retail,Synthetic line item 580,true
+3,2024-11-25,8451.01,Sales - Wholesale,Synthetic line item 581,true
+3,2024-05-09,21312.87,Sales - Retail,Synthetic line item 582,true
+3,2024-07-22,17780.92,Utilities,Synthetic line item 583,true
+3,2024-10-31,14273.51,Sales - Wholesale,Synthetic line item 584,true
+3,2024-06-01,12282.65,Sales - Retail,Synthetic line item 585,true
+3,2024-03-12,8828.04,Supplies,Synthetic line item 586,true
+3,2024-01-19,16540.55,Sales - Retail,Synthetic line item 587,true
+3,2024-11-22,12807.14,Marketing,Synthetic line item 588,true
+3,2024-03-28,8967.77,Logistics,Synthetic line item 589,true
+3,2024-10-13,23888.15,Logistics,Synthetic line item 590,true
+3,2024-04-23,16046.43,Digital / Software,Synthetic line item 591,true
+3,2024-06-18,3360.61,Digital / Software,Synthetic line item 592,true
+3,2024-08-28,31157.19,Supplies,Synthetic line item 593,true
+3,2024-02-06,9810.8,Marketing,Synthetic line item 594,true
+3,2024-07-14,13705.86,Sales - Wholesale,Synthetic line item 595,true
+3,2024-04-12,17365.38,Digital / Software,Synthetic line item 596,true
+3,2024-08-22,20777.39,Logistics,Synthetic line item 597,true
+3,2024-09-06,4943.69,Digital / Software,Synthetic line item 598,true
+3,2024-01-03,12468.83,Marketing,Synthetic line item 599,true
+3,2024-03-22,12538.06,Marketing,Synthetic line item 600,true
+3,2024-08-10,17517.79,Equipment,Synthetic line item 601,true
+3,2024-01-20,30251.74,Sales - Retail,Synthetic line item 602,false
+3,2024-01-10,5196.61,Supplies,Synthetic line item 603,true
+3,2024-06-25,7862.84,Sales - Wholesale,Synthetic line item 604,true
+3,2024-03-26,7854.06,Utilities,Synthetic line item 605,true
+3,2024-09-23,11555.54,Digital / Software,Synthetic line item 606,true
+3,2024-09-07,9823.54,Digital / Software,Synthetic line item 607,true
+3,2024-01-20,6524.07,Equipment,Synthetic line item 608,true
+3,2024-01-25,11041.29,Supplies,Synthetic line item 609,true
+3,2024-02-29,6631.58,Equipment,Synthetic line item 610,true
+3,2024-03-19,24353.05,Sales - Retail,Synthetic line item 611,false
+3,2024-02-21,26791.39,Sales - Wholesale,Synthetic line item 612,false
+3,2024-02-23,15155.83,Utilities,Synthetic line item 613,true
+3,2024-11-07,18843.55,Sales - Retail,Synthetic line item 614,false
+3,2024-03-23,9594.62,Supplies,Synthetic line item 615,true
+3,2024-01-07,21383.34,Utilities,Synthetic line item 616,true
+3,2024-03-17,23554.08,Utilities,Synthetic line item 617,true
+3,2024-08-21,7006.57,Sales - Wholesale,Synthetic line item 618,true
+3,2024-08-06,21930.94,Utilities,Synthetic line item 619,true
+3,2024-03-28,8615.49,Digital / Software,Synthetic line item 620,true
+3,2024-02-17,6502.18,Digital / Software,Synthetic line item 621,true
+3,2024-08-21,27092.08,Sales - Wholesale,Synthetic line item 622,false
+3,2024-08-03,11491.15,Logistics,Synthetic line item 623,true
+3,2024-03-22,13943.38,Utilities,Synthetic line item 624,true
+3,2024-08-12,17034.26,Logistics,Synthetic line item 625,true
+3,2024-03-07,5889.34,Marketing,Synthetic line item 626,true
+3,2024-01-24,6021.22,Utilities,Synthetic line item 627,true
+3,2024-09-25,25401.83,Sales - Retail,Synthetic line item 628,false
+3,2024-09-24,13714.33,Utilities,Synthetic line item 629,true
+3,2024-11-24,10685.6,Equipment,Synthetic line item 630,true
+3,2024-03-21,9700.8,Marketing,Synthetic line item 631,true
+3,2024-05-22,10416.99,Supplies,Synthetic line item 632,true
+3,2024-04-30,14911.01,Utilities,Synthetic line item 633,true
+3,2024-09-12,5241.8,Marketing,Synthetic line item 634,true
+3,2024-01-19,25711.24,Supplies,Synthetic line item 635,true
+3,2024-10-14,20922.2,Sales - Retail,Synthetic line item 636,false
+3,2024-01-28,14110.58,Sales - Retail,Synthetic line item 637,false
+3,2024-11-03,8068.22,Marketing,Synthetic line item 638,true
+3,2024-02-19,7209.76,Sales - Retail,Synthetic line item 639,true

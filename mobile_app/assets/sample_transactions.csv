@@ -1,0 +1,221 @@
+date,amount,category,description,is_expense
+2024-11-23,3556.1,Utilities,Synthetic line item 0,true
+2024-02-22,2647.65,Utilities,Synthetic line item 1,true
+2024-10-14,12188.47,Sales - Retail,Synthetic line item 2,false
+2024-08-17,11852.87,Sales - Wholesale,Synthetic line item 3,false
+2024-03-20,8882.65,Sales - Retail,Synthetic line item 4,false
+2024-02-19,6735.68,Digital / Software,Synthetic line item 5,true
+2024-08-23,3607.15,Utilities,Synthetic line item 6,true
+2024-11-17,5247.52,Digital / Software,Synthetic line item 7,true
+2024-04-26,8676.01,Sales - Wholesale,Synthetic line item 8,false
+2024-07-05,3274.97,Logistics,Synthetic line item 9,true
+2024-02-06,3082.96,Logistics,Synthetic line item 10,true
+2024-05-18,8507.27,Sales - Retail,Synthetic line item 11,false
+2024-04-18,4424.24,Digital / Software,Synthetic line item 12,true
+2024-11-25,5008.74,Marketing,Synthetic line item 13,true
+2024-08-07,4356.84,Equipment,Synthetic line item 14,true
+2024-02-26,6569.64,Logistics,Synthetic line item 15,true
+2024-02-02,6020.69,Equipment,Synthetic line item 16,true
+2024-05-16,4055.43,Digital / Software,Synthetic line item 17,true
+2024-05-14,1976.52,Logistics,Synthetic line item 18,true
+2024-11-23,6904.72,Sales - Retail,Synthetic line item 19,true
+2024-09-28,4403.24,Supplies,Synthetic line item 20,true
+2024-07-04,2800.7,Sales - Wholesale,Synthetic line item 21,true
+2024-02-10,4577.37,Utilities,Synthetic line item 22,true
+2024-08-31,7320.32,Logistics,Synthetic line item 23,true
+2024-04-18,8227.79,Sales - Retail,Synthetic line item 24,false
+2024-07-10,4231.04,Marketing,Synthetic line item 25,true
+2024-02-02,4920.39,Digital / Software,Synthetic line item 26,true
+2024-01-04,2590.84,Utilities,Synthetic line item 27,true
+2024-09-20,4339.71,Sales - Retail,Synthetic line item 28,true
+2024-10-19,4293.3,Marketing,Synthetic line item 29,true
+2024-02-18,3673.86,Utilities,Synthetic line item 30,true
+2024-01-28,10759.1,Utilities,Synthetic line item 31,true
+2024-02-25,4594.33,Sales - Retail,Synthetic line item 32,true
+2024-04-03,1821.92,Sales - Wholesale,Synthetic line item 33,true
+2024-10-03,2695.06,Supplies,Synthetic line item 34,true
+2024-04-19,1406.4,Equipment,Synthetic line item 35,true
+2024-08-20,5181.71,Sales - Wholesale,Synthetic line item 36,true
+2024-03-20,5060.65,Sales - Retail,Synthetic line item 37,true
+2024-01-30,4514.01,Supplies,Synthetic line item 38,true
+2024-03-21,2986.53,Supplies,Synthetic line item 39,true
+2024-10-31,3525.35,Utilities,Synthetic line item 40,true
+2024-10-18,12299.79,Sales - Retail,Synthetic line item 41,false
+2024-06-10,5537.08,Sales - Wholesale,Synthetic line item 42,true
+2024-07-21,3548.25,Logistics,Synthetic line item 43,true
+2024-02-07,2925.79,Supplies,Synthetic line item 44,true
+2024-05-15,3945.82,Logistics,Synthetic line item 45,true
+2024-10-05,6919.78,Sales - Wholesale,Synthetic line item 46,false
+2024-03-09,2255.2,Sales - Wholesale,Synthetic line item 47,true
+2024-05-19,11661.7,Sales - Wholesale,Synthetic line item 48,false
+2024-11-20,3835.93,Sales - Wholesale,Synthetic line item 49,true
+2024-05-14,4768.14,Logistics,Synthetic line item 50,true
+2024-01-05,5501.53,Utilities,Synthetic line item 51,true
+2024-10-25,2548.59,Logistics,Synthetic line item 52,true
+2024-01-21,3584.9,Digital / Software,Synthetic line item 53,true
+2024-10-13,3488.86,Equipment,Synthetic line item 54,true
+2024-03-31,5845.73,Equipment,Synthetic line item 55,true
+2024-07-29,5702.94,Sales - Retail,Synthetic line item 56,true
+2024-01-20,6994.28,Marketing,Synthetic line item 57,true
+2024-06-05,5460.97,Sales - Retail,Synthetic line item 58,true
+2024-05-22,2763.89,Utilities,Synthetic line item 59,true
+2024-07-23,3629.79,Digital / Software,Synthetic line item 60,true
+2024-08-10,3086.32,Digital / Software,Synthetic line item 61,true
+2024-09-18,4814.24,Utilities,Synthetic line item 62,true
+2024-08-11,9467.67,Supplies,Synthetic line item 63,true
+2024-04-10,5898.45,Digital / Software,Synthetic line item 64,true
+2024-03-04,5384.11,Sales - Wholesale,Synthetic line item 65,true
+2024-05-31,5459.31,Logistics,Synthetic line item 66,true
+2024-03-30,6438.78,Sales - Wholesale,Synthetic line item 67,true
+2024-04-17,5021.54,Equipment,Synthetic line item 68,true
+2024-08-14,4636.99,Marketing,Synthetic line item 69,true
+2024-03-27,6199.54,Utilities,Synthetic line item 70,true
+2024-02-17,8051.03,Sales - Retail,Synthetic line item 71,false
+2024-01-13,3913.79,Supplies,Synthetic line item 72,true
+2024-02-07,5035.95,Marketing,Synthetic line item 73,true
+2024-07-15,1861.31,Marketing,Synthetic line item 74,true
+2024-02-24,9624.26,Equipment,Synthetic line item 75,true
+2024-08-25,2620.9,Supplies,Synthetic line item 76,true
+2024-09-28,9702.27,Digital / Software,Synthetic line item 77,true
+2024-09-15,6371.1,Equipment,Synthetic line item 78,true
+2024-08-31,2595.35,Marketing,Synthetic line item 79,true
+2024-09-23,3682.61,Marketing,Synthetic line item 80,true
+2024-05-26,3285.68,Sales - Retail,Synthetic line item 81,true
+2024-03-11,7405.68,Logistics,Synthetic line item 82,true
+2024-02-02,4704.65,Equipment,Synthetic line item 83,true
+2024-04-15,4972.71,Equipment,Synthetic line item 84,true
+2024-06-29,8163.46,Sales - Wholesale,Synthetic line item 85,false
+2024-10-06,3162.77,Sales - Retail,Synthetic line item 86,true
+2024-07-18,10244.22,Digital / Software,Synthetic line item 87,true
+2024-08-27,5901.97,Logistics,Synthetic line item 88,true
+2024-10-30,2939.81,Supplies,Synthetic line item 89,true
+2024-04-03,3482.76,Supplies,Synthetic line item 90,true
+2024-06-21,8120.79,Equipment,Synthetic line item 91,true
+2024-02-11,3193.67,Marketing,Synthetic line item 92,true
+2024-01-21,3271.09,Supplies,Synthetic line item 93,true
+2024-02-28,3300.5,Sales - Retail,Synthetic line item 94,true
+2024-11-06,3051.07,Utilities,Synthetic line item 95,true
+2024-10-23,8401.82,Supplies,Synthetic line item 96,true
+2024-07-11,2512.58,Equipment,Synthetic line item 97,true
+2024-11-17,4857.08,Sales - Retail,Synthetic line item 98,true
+2024-10-16,4073.09,Supplies,Synthetic line item 99,true
+2024-09-16,3940.04,Digital / Software,Synthetic line item 100,true
+2024-08-09,10582.76,Digital / Software,Synthetic line item 101,true
+2024-08-10,7275.75,Logistics,Synthetic line item 102,true
+2024-10-02,8242.42,Marketing,Synthetic line item 103,true
+2024-06-14,7425.63,Sales - Retail,Synthetic line item 104,false
+2024-11-08,4418.2,Equipment,Synthetic line item 105,true
+2024-09-06,3432.44,Sales - Retail,Synthetic line item 106,true
+2024-11-01,10020.03,Sales - Wholesale,Synthetic line item 107,false
+2024-05-03,8469.01,Equipment,Synthetic line item 108,true
+2024-09-08,2970.27,Marketing,Synthetic line item 109,true
+2024-05-04,8298.87,Sales - Wholesale,Synthetic line item 110,false
+2024-06-25,4722.12,Equipment,Synthetic line item 111,true
+2024-08-20,2108.31,Sales - Wholesale,Synthetic line item 112,true
+2024-06-10,1788.29,Utilities,Synthetic line item 113,true
+2024-05-21,13144.97,Sales - Wholesale,Synthetic line item 114,false
+2024-07-03,5344.7,Logistics,Synthetic line item 115,true
+2024-01-24,5294.54,Supplies,Synthetic line item 116,true
+2024-09-08,4953.05,Utilities,Synthetic line item 117,true
+2024-08-13,4037.37,Digital / Software,Synthetic line item 118,true
+2024-07-24,4942.32,Marketing,Synthetic line item 119,true
+2024-03-17,2864.43,Sales - Wholesale,Synthetic line item 120,true
+2024-08-01,4514.22,Sales - Retail,Synthetic line item 121,false
+2024-06-01,5649.61,Equipment,Synthetic line item 122,true
+2024-02-20,8486.22,Sales - Retail,Synthetic line item 123,false
+2024-05-02,2840.44,Logistics,Synthetic line item 124,true
+2024-10-31,2192.08,Marketing,Synthetic line item 125,true
+2024-08-20,5913.2,Utilities,Synthetic line item 126,true
+2024-04-11,3464.64,Equipment,Synthetic line item 127,true
+2024-05-16,3064.12,Logistics,Synthetic line item 128,true
+2024-10-18,4295.3,Sales - Wholesale,Synthetic line item 129,true
+2024-07-25,4423.96,Sales - Wholesale,Synthetic line item 130,true
+2024-01-21,4828.02,Equipment,Synthetic line item 131,true
+2024-04-27,5335.13,Supplies,Synthetic line item 132,true
+2024-01-21,17919.22,Logistics,Synthetic line item 133,true
+2024-04-02,4415.92,Equipment,Synthetic line item 134,true
+2024-06-27,11194.76,Equipment,Synthetic line item 135,true
+2024-06-17,7616.31,Equipment,Synthetic line item 136,true
+2024-08-20,3818.45,Utilities,Synthetic line item 137,true
+2024-01-01,3047.58,Marketing,Synthetic line item 138,true
+2024-09-12,2676.66,Marketing,Synthetic line item 139,true
+2024-05-27,4393.35,Marketing,Synthetic line item 140,true
+2024-11-18,9216.43,Sales - Retail,Synthetic line item 141,false
+2024-02-28,5088.73,Marketing,Synthetic line item 142,true
+2024-05-29,4334.68,Sales - Wholesale,Synthetic line item 143,true
+2024-08-21,8623.7,Logistics,Synthetic line item 144,true
+2024-03-10,6520.23,Utilities,Synthetic line item 145,true
+2024-09-16,8218.23,Sales - Wholesale,Synthetic line item 146,false
+2024-10-27,4105.06,Marketing,Synthetic line item 147,true
+2024-06-19,3753.42,Equipment,Synthetic line item 148,true
+2024-05-02,8441.08,Equipment,Synthetic line item 149,true
+2024-07-14,8507.2,Equipment,Synthetic line item 150,true
+2024-03-18,3850.02,Marketing,Synthetic line item 151,true
+2024-08-13,3944.99,Utilities,Synthetic line item 152,true
+2024-07-28,5977.17,Logistics,Synthetic line item 153,true
+2024-11-15,6956.55,Equipment,Synthetic line item 154,true
+2024-06-11,16003.38,Marketing,Synthetic line item 155,true
+2024-04-26,1907.59,Utilities,Synthetic line item 156,true
+2024-02-21,3852.04,Marketing,Synthetic line item 157,true
+2024-07-02,3178.38,Digital / Software,Synthetic line item 158,true
+2024-04-02,5099.48,Logistics,Synthetic line item 159,true
+2024-05-03,2667.0,Marketing,Synthetic line item 160,true
+2024-05-10,2771.22,Marketing,Synthetic line item 161,true
+2024-06-25,9315.13,Sales - Wholesale,Synthetic line item 162,false
+2024-06-03,8856.25,Sales - Retail,Synthetic line item 163,false
+2024-05-31,6779.74,Sales - Wholesale,Synthetic line item 164,true
+2024-01-05,13797.74,Supplies,Synthetic line item 165,true
+2024-05-26,7754.14,Sales - Retail,Synthetic line item 166,false
+2024-11-13,14606.46,Sales - Wholesale,Synthetic line item 167,false
+2024-03-11,5236.85,Utilities,Synthetic line item 168,true
+2024-08-13,5416.19,Supplies,Synthetic line item 169,true
+2024-05-31,3332.46,Digital / Software,Synthetic line item 170,true
+2024-10-03,1525.08,Digital / Software,Synthetic line item 171,true
+2024-09-03,8871.1,Sales - Wholesale,Synthetic line item 172,false
+2024-02-08,2311.32,Logistics,Synthetic line item 173,true
+2024-07-22,3981.25,Digital / Software,Synthetic line item 174,true
+2024-03-04,5770.63,Marketing,Synthetic line item 175,true
+2024-07-14,8745.63,Digital / Software,Synthetic line item 176,true
+2024-11-08,11519.05,Sales - Retail,Synthetic line item 177,false
+2024-06-03,2856.33,Equipment,Synthetic line item 178,true
+2024-07-17,4794.34,Marketing,Synthetic line item 179,true
+2024-03-20,8692.75,Equipment,Synthetic line item 180,true
+2024-05-23,3001.74,Supplies,Synthetic line item 181,true
+2024-04-30,6091.62,Digital / Software,Synthetic line item 182,true
+2024-07-02,3385.35,Supplies,Synthetic line item 183,true
+2024-08-20,5834.52,Utilities,Synthetic line item 184,true
+2024-01-11,3545.8,Supplies,Synthetic line item 185,true
+2024-10-16,5757.06,Sales - Retail,Synthetic line item 186,true
+2024-04-20,3244.51,Sales - Retail,Synthetic line item 187,true
+2024-05-08,6160.05,Logistics,Synthetic line item 188,true
+2024-07-02,6720.83,Sales - Retail,Synthetic line item 189,false
+2024-02-28,6911.38,Utilities,Synthetic line item 190,true
+2024-02-25,4585.05,Marketing,Synthetic line item 191,true
+2024-01-16,7096.19,Supplies,Synthetic line item 192,true
+2024-02-25,2885.58,Marketing,Synthetic line item 193,true
+2024-06-13,2770.12,Logistics,Synthetic line item 194,true
+2024-10-07,4947.46,Digital / Software,Synthetic line item 195,true
+2024-09-15,12812.49,Equipment,Synthetic line item 196,true
+2024-10-09,7413.83,Sales - Retail,Synthetic line item 197,true
+2024-08-20,2577.81,Equipment,Synthetic line item 198,true
+2024-05-10,5850.77,Digital / Software,Synthetic line item 199,true
+2024-02-16,7650.53,Utilities,Synthetic line item 200,true
+2024-10-27,2579.19,Digital / Software,Synthetic line item 201,true
+2024-08-04,5011.83,Supplies,Synthetic line item 202,true
+2024-10-22,4064.2,Sales - Retail,Synthetic line item 203,true
+2024-06-28,3565.64,Digital / Software,Synthetic line item 204,true
+2024-08-07,6617.65,Supplies,Synthetic line item 205,true
+2024-01-15,3864.18,Logistics,Synthetic line item 206,true
+2024-03-14,2272.79,Equipment,Synthetic line item 207,true
+2024-07-11,3028.4,Equipment,Synthetic line item 208,true
+2024-06-15,4120.6,Utilities,Synthetic line item 209,true
+2024-11-06,2834.8,Marketing,Synthetic line item 210,true
+2024-06-25,6236.35,Equipment,Synthetic line item 211,true
+2024-09-26,3634.41,Sales - Wholesale,Synthetic line item 212,true
+2024-01-04,3434.47,Sales - Retail,Synthetic line item 213,true
+2024-05-10,2969.23,Sales - Wholesale,Synthetic line item 214,true
+2024-04-27,8594.94,Digital / Software,Synthetic line item 215,true
+2024-10-20,4138.92,Equipment,Synthetic line item 216,true
+2024-01-11,8434.01,Digital / Software,Synthetic line item 217,true
+2024-07-04,2593.66,Utilities,Synthetic line item 218,true
+2024-07-24,3562.6,Utilities,Synthetic line item 219,true

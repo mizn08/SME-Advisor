@@ -1,0 +1,4 @@
+# Deprecated: use the root-level docker-compose.yml in the project root.
+#
+#   cd ..
+#   docker compose up --build

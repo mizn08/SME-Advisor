@@ -1,0 +1,3 @@
+# Optional: SHAP (TreeExplainer) for richer `/predict` explanations.
+# Linux/macOS usually have a pre-built wheel; on Windows you may need MSVC Build Tools.
+shap>=0.45.0,<0.47
