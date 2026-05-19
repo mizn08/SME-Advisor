@@ -1,24 +1,4 @@
-# BNPL Advisor API — Render-optimized (smaller/faster than full Dockerfile)
-# - No Chroma, FastEmbed, Tesseract, or SHAP
-# - Multi-stage pip wheels
-# Use: Render Web Service → Dockerfile Path: backend/Dockerfile.render
-
-FROM python:3.11-slim AS builder
-
-ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    PIP_NO_CACHE_DIR=1
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /build
-# requirements-render.txt includes -r requirements.txt and -r requirements-v2.txt
-COPY backend/requirements.txt backend/requirements-v2.txt backend/requirements-render.txt /build/
-
-RUN pip wheel --wheel-dir /wheels -r /build/requirements-render.txt
-
-
+# BNPL Advisor API — Render / CI (single-stage, reliable pip install)
 FROM python:3.11-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -26,30 +6,28 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONPATH=/app/backend \
     ML_MODELS_DIR=/app/backend/app/ml_models \
     USE_VECTOR_RAG=false \
-    APP_ENV=production
+    APP_ENV=production \
+    DATABASE_URL=sqlite:////app/backend/data/bnpl_local.db
 
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl \
+    && apt-get install -y --no-install-recommends build-essential curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/*.whl \
-    && rm -rf /wheels
+COPY backend/requirements.txt backend/requirements-v2.txt backend/requirements-render.txt /tmp/req/
+RUN pip install --no-cache-dir -r /tmp/req/requirements-render.txt
 
 COPY backend/app /app/backend/app
 COPY backend/app/data /app/backend/app/data
 COPY backend/docker-entrypoint.sh /app/backend/docker-entrypoint.sh
 COPY scripts /app/scripts
 COPY scripts/normalize_db_url.py /app/scripts/normalize_db_url.py
-
-# Only runtime artefacts (not training notebooks / large CSVs)
 COPY backend/app/ml_models /app/backend/app/ml_models
 
 RUN sed -i 's/\r$//' /app/backend/docker-entrypoint.sh \
     && chmod +x /app/backend/docker-entrypoint.sh \
-    && mkdir -p /app/backend/data/uploads
+    && mkdir -p /app/backend/data/uploads /app/backend/data
 
 EXPOSE 8000
 

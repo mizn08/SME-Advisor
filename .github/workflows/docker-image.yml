@@ -6,10 +6,12 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -33,12 +35,14 @@ jobs:
             -e DATABASE_URL=sqlite:////tmp/ci.db \
             -e USE_VECTOR_RAG=false \
             sme-advisor-api:ci
-          for i in $(seq 1 40); do
+          for i in $(seq 1 60); do
             if curl -fsS http://127.0.0.1:8000/health; then
               echo "Health OK"
+              docker logs sme-api 2>&1 | tail -30
               exit 0
             fi
             sleep 5
           done
-          docker logs sme-api
+          echo "=== container logs ==="
+          docker logs sme-api 2>&1 | tail -80
           exit 1
