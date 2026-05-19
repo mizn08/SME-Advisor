@@ -13,7 +13,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /wheels
-COPY backend/requirements-render.txt /wheels/requirements-render.txt
+# requirements-render.txt includes -r requirements.txt and -r requirements-v2.txt
+COPY backend/requirements.txt backend/requirements-v2.txt backend/requirements-render.txt /wheels/
 
 RUN pip wheel --wheel-dir /wheels -r requirements-render.txt
 
