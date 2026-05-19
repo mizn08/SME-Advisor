@@ -1,0 +1,30 @@
+[
+  {
+    "scheme_name": "MDEC SME Digitalisation Grant",
+    "agency": "MDEC",
+    "aid_type": "grant",
+    "max_amount_rm": 5000,
+    "interest_rate_label": "0%",
+    "tenure_months": null,
+    "approval_speed_label": "4-8 weeks",
+    "requires_bumiputera": false,
+    "requires_veteran": false,
+    "industry_keywords": "digital,it,software,tech",
+    "digitalisation_only": true,
+    "description": "Co-funding for digital tools and cloud subscriptions."
+  },
+  {
+    "scheme_name": "CGC Digitalisation Facility",
+    "agency": "CGC",
+    "aid_type": "guarantee",
+    "max_amount_rm": 100000,
+    "interest_rate_label": "bank rate",
+    "tenure_months": 60,
+    "approval_speed_label": "2-4 weeks",
+    "requires_bumiputera": false,
+    "requires_veteran": false,
+    "industry_keywords": null,
+    "digitalisation_only": true,
+    "description": "Credit guarantee for equipment and ERP upgrades."
+  }
+]

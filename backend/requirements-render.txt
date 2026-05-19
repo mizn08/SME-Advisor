@@ -1,0 +1,5 @@
+# Slim production install for Render (faster build & boot).
+# Includes: FastAPI, ML (sklearn/xgboost), LangChain + BM25 RAG, agents.
+# Excludes: Chroma/FastEmbed, Tesseract OCR, SHAP (API uses fallbacks).
+-r requirements.txt
+-r requirements-v2.txt

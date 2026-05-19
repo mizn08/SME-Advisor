@@ -23,6 +23,9 @@ class DashboardData {
     required this.expenseMtdRm,
     required this.netOperatingCashRm,
     required this.monthlySeries,
+    this.runwayDaysEst,
+    this.alerts = const [],
+    this.anomalyCount = 0,
   });
 
   final int smeId;
@@ -35,6 +38,9 @@ class DashboardData {
   final double expenseMtdRm;
   final double netOperatingCashRm;
   final List<MonthlyPoint> monthlySeries;
+  final double? runwayDaysEst;
+  final List<String> alerts;
+  final int anomalyCount;
 
   factory DashboardData.fromJson(Map<String, dynamic> j) {
     final kpis = j['kpis'] as Map<String, dynamic>;
@@ -52,6 +58,9 @@ class DashboardData {
       expenseMtdRm: (kpis['expense_mtd_rm'] as num).toDouble(),
       netOperatingCashRm: (kpis['net_operating_cash_rm'] as num).toDouble(),
       monthlySeries: series,
+      runwayDaysEst: (j['runway_days_est'] as num?)?.toDouble(),
+      alerts: (j['alerts'] as List<dynamic>? ?? []).map((e) => e.toString()).toList(),
+      anomalyCount: j['anomaly_count'] as int? ?? 0,
     );
   }
 }

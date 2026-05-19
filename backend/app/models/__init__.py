@@ -1,3 +1,5 @@
+from app.models.audit import AuditLog
+from app.models.bandit import BanditArmStat, BanditFeedback
 from app.models.bnpl import BNPLOffer
 from app.models.cash_flow import CashFlowSnapshot
 from app.models.credit_line import CreditLineOffer
@@ -14,4 +16,7 @@ __all__ = [
     "CreditLineOffer",
     "GovFinancialAid",
     "PredictionLog",
+    "BanditArmStat",
+    "BanditFeedback",
+    "AuditLog",
 ]

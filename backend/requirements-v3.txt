@@ -1,0 +1,4 @@
+# v3: vector DB, embeddings, OCR
+langchain-chroma==0.1.4
+chromadb==0.5.23
+fastembed==0.4.2

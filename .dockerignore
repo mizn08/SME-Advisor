@@ -1,5 +1,8 @@
 mobile_app/
 flutter/
+docs/
+deploy/
+.github/
 **/__pycache__
 **/*.pyc
 **/.pytest_cache
@@ -8,8 +11,15 @@ flutter/
 **/venv
 **/.git
 **/.idea
+**/.cursor
 **/*.md
+**/*.pdf
+**/*.ipynb
 bnpl_local.db
 backend/bnpl_local.db
+backend/data/chroma
+backend/ml_pipeline/notebooks
+backend/ml_pipeline/data
 **/.dart_tool
 **/build
+**/agent-transcripts

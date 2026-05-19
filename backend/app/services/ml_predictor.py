@@ -37,18 +37,19 @@ def _model_dir() -> Path:
     return Path(__file__).resolve().parents[2] / "ml_pipeline" / "models"
 
 
-def _paths() -> tuple[Path, Path, Path, Path]:
+def _paths() -> tuple[Path, Path, Path, Path, Path]:
     ml_dir = _model_dir()
     return (
         ml_dir / "logistic_regression.pkl",
         ml_dir / "random_forest.pkl",
         ml_dir / "xgboost.pkl",
+        ml_dir / "lightgbm.pkl",
         ml_dir / "feature_order.json",
     )
 
 
 def models_exist() -> bool:
-    lr, rf, xgb, fo = _paths()
+    lr, rf, xgb, _lgb, _fo = _paths()
     return lr.is_file() and rf.is_file() and xgb.is_file()
 
 
@@ -99,12 +100,20 @@ def predict_probability(feature_row: dict[str, float]) -> tuple[float, dict[str,
             lr_m = joblib.load(_paths()[0])
             rf_m = joblib.load(_paths()[1])
             xgb_m = joblib.load(_paths()[2])
+            lgb_path = _paths()[3]
             X = pd.DataFrame([feature_row])[FEATURE_ORDER]
             lr_p = float(lr_m.predict_proba(X)[0][1])
             rf_p = float(rf_m.predict_proba(X)[0][1])
             xgb_p = float(xgb_m.predict_proba(X)[0][1])
-            prob = (lr_p + rf_p + xgb_p) / 3.0
-            return prob, {"lr": lr_p, "rf": rf_p, "xgb": xgb_p}
+            probs = [lr_p, rf_p, xgb_p]
+            dbg: dict[str, Any] = {"lr": lr_p, "rf": rf_p, "xgb": xgb_p}
+            if lgb_path.is_file():
+                lgb_m = joblib.load(lgb_path)
+                lgb_p = float(lgb_m.predict_proba(X)[0][1])
+                probs.append(lgb_p)
+                dbg["lgb"] = lgb_p
+            prob = sum(probs) / len(probs)
+            return prob, dbg
         except Exception:
             pass
     prob = _heuristic_probability(feature_row)

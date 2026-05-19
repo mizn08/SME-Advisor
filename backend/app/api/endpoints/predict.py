@@ -8,7 +8,7 @@ from app.models.gov_aid import GovFinancialAid
 from app.models.prediction import PredictionLog
 from app.models.sme import SMEProfile
 from app.schemas import GovAidOut, PredictRequest, PredictResponse, ShapItem
-from app.services import data_processor, decision_engine
+from app.services import bandit_service, data_processor, decision_engine, rl_policy_service
 
 router = APIRouter(tags=["predict"])
 
@@ -44,8 +44,13 @@ def predict(payload: PredictRequest, db: Session = Depends(get_db)):
     )
     db.add(log)
     db.commit()
+    db.refresh(log)
+
+    bandit = bandit_service.select_arm_ucb(db)
+    rl = rl_policy_service.select_action(db, payload.sme_id, payload.purchase_amount)
 
     return PredictResponse(
+        prediction_id=log.id,
         recommendation_type=result.recommendation_type,
         product_name=result.product_name,
         explanation=result.explanation,
@@ -54,6 +59,8 @@ def predict(payload: PredictRequest, db: Session = Depends(get_db)):
         confidence=result.confidence,
         shap_values=[ShapItem(**s) for s in result.shap_values],
         ml_probability=result.ml_probability,
+        bandit_suggested_arm=bandit["suggested_arm"],
+        rl_suggested_action=rl["action"],
     )
 
 

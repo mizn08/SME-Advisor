@@ -1,0 +1,158 @@
+"""Multi-agent orchestration: Grant, BNPL, and Cash specialists (LangChain)."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any
+
+from sqlalchemy.orm import Session
+
+from app.core.config import get_settings
+from app.models.sme import SMEProfile
+from app.services import data_processor, decision_engine, rag_service
+from app.services.langchain_tools import make_tools
+
+
+@dataclass
+class AgentAdvice:
+    lead_agent: str
+    summary: str
+    agents: list[dict[str, str]]
+    recommendation: dict[str, Any] | None
+    rag_snippet: str | None
+
+
+def _route_agent(goal: str, category: str) -> str:
+    text = f"{goal} {category}".lower()
+    if any(w in text for w in ("grant", "scheme", "gov", "cggs", "madani", "tekun", "sme bank")):
+        return "grant"
+    if any(w in text for w in ("bnpl", "installment", "pay later", "split")):
+        return "bnpl"
+    if any(w in text for w in ("cash", "burn", "runway", "liquidity", "preserve")):
+        return "cash"
+    return "supervisor"
+
+
+def _grant_agent(db: Session, sme: SMEProfile, category: str) -> str:
+    schemes = decision_engine._eligible_gov_schemes(db, sme, category)  # noqa: SLF001
+    if not schemes:
+        return "No matching government schemes for this profile and purchase category."
+    top = schemes[0]
+    return (
+        f"Grant specialist: consider {top.scheme_name} ({top.agency}), "
+        f"up to RM {top.max_amount_rm or 0:,.0f}, {top.approval_speed_label}."
+    )
+
+
+def _bnpl_agent(db: Session, sme: SMEProfile, amount: float, category: str) -> str:
+    df = data_processor.load_transactions_df(db, sme.id)
+    kpis = data_processor.compute_kpis_from_transactions(df)
+    r = decision_engine.decide(db, sme, kpis, amount, category, None)
+    if r.recommendation_type.lower() != "bnpl":
+        return f"BNPL specialist: BNPL may not be optimal; engine suggests {r.recommendation_type} ({r.product_name})."
+    return f"BNPL specialist: {r.product_name} — {r.explanation}"
+
+
+def _cash_agent(db: Session, sme: SMEProfile) -> str:
+    df = data_processor.load_transactions_df(db, sme.id)
+    k = data_processor.compute_kpis_from_transactions(df)
+    if k["days_cash_on_hand"] < 45:
+        return (
+            f"Cash specialist: runway is tight ({k['days_cash_on_hand']:.0f} days cash). "
+            "Prioritise grants or BNPL to preserve working capital."
+        )
+    return (
+        f"Cash specialist: {k['days_cash_on_hand']:.0f} days cash on hand — "
+        "you have flexibility; compare total cost before drawing credit."
+    )
+
+
+def _langchain_agent_run(db: Session, sme_id: int, goal: str, amount: float, category: str) -> str | None:
+    settings = get_settings()
+    if not settings.OPENAI_API_KEY:
+        return None
+    try:
+        from langchain.agents import AgentExecutor, create_openai_tools_agent
+        from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+        from langchain_openai import ChatOpenAI
+
+        tools = make_tools(db, sme_id)
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    "You are the SME Advisor supervisor for Malaysia. Use tools to answer. "
+                    "Coordinate BNPL, grants, and cash preservation. Be concise.",
+                ),
+                ("human", "{input}"),
+                MessagesPlaceholder("agent_scratchpad"),
+            ]
+        )
+        llm = ChatOpenAI(model=settings.OPENAI_MODEL, temperature=0.2, api_key=settings.OPENAI_API_KEY)
+        agent = create_openai_tools_agent(llm, tools, prompt)
+        executor = AgentExecutor(agent=agent, tools=tools, verbose=False, max_iterations=4)
+        user_input = (
+            f"Goal: {goal}. Purchase RM {amount:,.0f}, category: {category}. "
+            "Call tools and give a unified recommendation."
+        )
+        result = executor.invoke({"input": user_input})
+        return str(result.get("output", ""))
+    except Exception:
+        return None
+
+
+def run_multi_agent(
+    db: Session,
+    sme_id: int,
+    purchase_amount: float,
+    purchase_category: str,
+    goal: str = "best financing option",
+) -> AgentAdvice:
+    sme = db.query(SMEProfile).filter(SMEProfile.id == sme_id).first()
+    if not sme:
+        return AgentAdvice(
+            lead_agent="error",
+            summary="SME not found",
+            agents=[],
+            recommendation=None,
+            rag_snippet=None,
+        )
+
+    lead = _route_agent(goal, purchase_category)
+    agents_out = [
+        {"name": "grant", "insight": _grant_agent(db, sme, purchase_category)},
+        {"name": "bnpl", "insight": _bnpl_agent(db, sme, purchase_amount, purchase_category)},
+        {"name": "cash", "insight": _cash_agent(db, sme)},
+    ]
+
+    df = data_processor.load_transactions_df(db, sme_id)
+    kpis = data_processor.compute_kpis_from_transactions(df)
+    decision = decision_engine.decide(db, sme, kpis, purchase_amount, purchase_category, None)
+    recommendation = {
+        "recommendation_type": decision.recommendation_type,
+        "product_name": decision.product_name,
+        "explanation": decision.explanation,
+        "confidence": decision.confidence,
+        "cash_preserved_rm": decision.cash_preserved_rm,
+    }
+
+    rag = rag_service.rag_query(db, sme_id, f"{goal} {purchase_category}")
+    rag_snippet = rag["answer"][:400] if rag else None
+
+    llm_summary = _langchain_agent_run(db, sme_id, goal, purchase_amount, purchase_category)
+    if llm_summary:
+        summary = llm_summary
+    else:
+        lead_insight = next((a["insight"] for a in agents_out if a["name"] == lead), agents_out[0]["insight"])
+        summary = (
+            f"Lead agent: {lead}. {lead_insight} "
+            f"Final engine pick: {decision.recommendation_type} — {decision.product_name}."
+        )
+
+    return AgentAdvice(
+        lead_agent=lead,
+        summary=summary,
+        agents=agents_out,
+        recommendation=recommendation,
+        rag_snippet=rag_snippet,
+    )

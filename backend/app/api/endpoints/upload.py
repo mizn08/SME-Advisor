@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.models.sme import SMEProfile
 from app.models.transaction import FinancialTransaction
-from app.services import data_processor
+from app.services import data_processor, rag_service
 
 router = APIRouter(tags=["upload"])
 
@@ -56,6 +56,7 @@ async def upload_csv(
     kpis = data_processor.compute_kpis_from_transactions(df)
     data_processor.persist_snapshot(db, sme_id, kpis)
     db.commit()
+    rag_service.invalidate_rag_cache(sme_id)
 
     return {
         "sme_id": sme_id,

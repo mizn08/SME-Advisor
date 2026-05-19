@@ -11,53 +11,83 @@ class RecommendationResultCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ok = result.recommendationType != 'Cash';
-    return Card(
+    return PremiumCard(
       margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(ok ? Icons.check_circle : Icons.info_outline, color: ok ? AppTheme.accentGreen : Colors.orange),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    result.recommendationType,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                  ),
+      borderColor: ok ? AppTheme.accentGreen.withOpacity(0.3) : Colors.orange.withOpacity(0.3),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: (ok ? AppTheme.accentGreen : Colors.orange).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(result.productName, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-            const SizedBox(height: 12),
-            Text(result.explanation),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 16,
-              runSpacing: 8,
-              children: [
-                _chip('Cash preserved', 'RM ${result.cashPreservedRm.toStringAsFixed(2)}'),
-                _chip('Extra cost (est.)', 'RM ${result.additionalCostRm.toStringAsFixed(2)}'),
-                _chip('Confidence', '${(result.confidence * 100).toStringAsFixed(1)}%'),
-              ],
-            ),
-          ],
-        ),
+                child: Icon(
+                  ok ? Icons.check_circle_rounded : Icons.info_rounded,
+                  color: ok ? AppTheme.accentGreen : Colors.orange,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  result.recommendationType,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            result.productName,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppTheme.teal),
+          ),
+          const SizedBox(height: 12),
+          Text(result.explanation, style: TextStyle(color: Colors.grey.shade700, height: 1.5)),
+          const SizedBox(height: 16),
+          Wrap(
+            spacing: 10,
+            runSpacing: 8,
+            children: [
+              _chip('Cash preserved', 'RM ${result.cashPreservedRm.toStringAsFixed(2)}', Icons.savings_rounded),
+              _chip('Extra cost', 'RM ${result.additionalCostRm.toStringAsFixed(2)}', Icons.receipt_long_rounded),
+              _chip('Confidence', '${(result.confidence * 100).toStringAsFixed(1)}%', Icons.verified_rounded),
+            ],
+          ),
+        ],
       ),
     );
   }
 
-  Widget _chip(String k, String v) => Chip(
-        label: Text('$k: $v'),
-        backgroundColor: AppTheme.iceBlue,
+  Widget _chip(String k, String v, IconData icon) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: AppTheme.teal.withOpacity(0.06),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppTheme.teal.withOpacity(0.12)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 14, color: AppTheme.teal),
+            const SizedBox(width: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(k, style: TextStyle(fontSize: 10, color: Colors.grey.shade500, fontWeight: FontWeight.w500)),
+                Text(v, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700)),
+              ],
+            ),
+          ],
+        ),
       );
 }
 
 class ShapFactorsList extends StatelessWidget {
-  const ShapFactorsList({super.key, required this.items, this.title = 'AI decision factors'});
+  const ShapFactorsList({super.key, required this.items, this.title = 'AI Decision Factors'});
 
   final List<ShapItem> items;
   final String title;
@@ -82,51 +112,84 @@ class ShapFactorsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return PremiumCard(
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 4),
-            Text(
-              ShapFactorsList.narrative(items),
-              style: TextStyle(color: Colors.grey.shade700, height: 1.35),
-            ),
-            const SizedBox(height: 12),
-            ...items.map((s) {
-              final pos = s.direction == 'positive';
-              final w = (s.impact.abs() * 120).clamp(8.0, 120.0);
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(s.feature.replaceAll('_', ' '), style: const TextStyle(fontWeight: FontWeight.w500)),
-                    const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Container(
-                          width: w,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: pos ? Colors.green.shade400 : Colors.red.shade300,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text('${s.impact >= 0 ? '+' : ''}${s.impact.toStringAsFixed(2)} impact',
-                            style: const TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                  ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: AppTheme.teal.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              );
-            }),
-          ],
-        ),
+                child: const Icon(Icons.insights_rounded, color: AppTheme.teal, size: 18),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              ShapFactorsList.narrative(items),
+              style: TextStyle(color: Colors.grey.shade600, height: 1.4, fontSize: 13),
+            ),
+          ),
+          const SizedBox(height: 14),
+          ...items.map((s) {
+            final pos = s.direction == 'positive';
+            final w = (s.impact.abs() * 120).clamp(8.0, 120.0);
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    s.feature.replaceAll('_', ' '),
+                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Container(
+                        width: w,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: pos
+                                ? [Colors.green.shade300, Colors.green.shade500]
+                                : [Colors.red.shade200, Colors.red.shade400],
+                          ),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        '${s.impact >= 0 ? '+' : ''}${s.impact.toStringAsFixed(2)} impact',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: pos ? Colors.green.shade700 : Colors.red.shade600,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          }),
+        ],
       ),
     );
   }

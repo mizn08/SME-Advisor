@@ -66,10 +66,28 @@ def seed_reference_data(db: Session) -> None:
             interest_free_days=45,
             effective_monthly_rate_pct=1.5,
         ),
+        BNPLOffer(
+            name="Islamic BNPL — PayHalal 6-month",
+            provider="PayHalal",
+            max_amount_rm=40_000,
+            max_tenure_months=6,
+            interest_free_days=30,
+            effective_monthly_rate_pct=0.8,
+        ),
     ]
     db.add_all(bnpl)
 
     credits = [
+        CreditLineOffer(
+            name="Bank Islam SME Musharakah",
+            provider="Bank Islam",
+            product_type="islamic",
+            max_amount_rm=300_000,
+            annual_interest_rate_pct=4.5,
+            max_tenure_months=60,
+            approval_speed_days=25,
+            eligibility_summary="Shariah-compliant profit-sharing facility",
+        ),
         CreditLineOffer(
             name="TEKUN Mikro",
             provider="TEKUN Nasional",

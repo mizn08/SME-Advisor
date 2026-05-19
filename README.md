@@ -54,6 +54,103 @@ flutter run --dart-define=API_BASE=http://10.0.2.2:8000
 
 ML `.pkl` files are baked into the image at `backend/app/ml_models/` (also kept under `backend/ml_pipeline/models/` for training).
 
+## Demo with web (recommended)
+
+For **APC / judge demos**, a **website is easier than an APK**: one link, no install, no “unknown app” warnings, no rebuilding the APK when your API URL changes.
+
+| Approach | Best for | Link you share |
+|----------|----------|----------------|
+| **Web + Render** | Judges anywhere (stable URL) | `https://….onrender.com` — see [`deploy/render/README.md`](deploy/render/README.md) |
+| **Web + ngrok** | Quick test from your PC | `https://….ngrok-free.app` (Flutter web) |
+| **Swagger only** | Backup / API-focused rubric | `https://….onrender.com/docs` or ngrok `/docs` |
+| **Web on same Wi‑Fi** | Classroom, no ngrok | `http://<your-PC-IP>:8080` |
+| **APK** | Optional “mobile app” proof | Install file or download link (more setup) |
+
+### A0 — Render (recommended for submission — no ngrok)
+
+Deploy API + Postgres on [Render](https://render.com). Full guide: **[`deploy/render/README.md`](deploy/render/README.md)**.
+
+1. Create **PostgreSQL** + **Web Service** (Docker, `backend/Dockerfile.render` — slim, faster on free tier).
+2. Set `DATABASE_URL` to `postgresql+psycopg2://...` (convert from Render’s `postgres://` URL).
+3. Set `USE_VECTOR_RAG=false` on free tier for faster deploys.
+4. Build web locally: `.\scripts\build_web.ps1 -ApiBase https://YOUR-SERVICE.onrender.com`
+5. Host `mobile_app/build/web` on Render **Static Site**, Vercel, or Netlify.
+
+Share: app URL + `https://YOUR-SERVICE.onrender.com/docs`
+
+### A — Public demo with ngrok (from your PC)
+
+**Terminal 1 — API**
+
+```powershell
+cd bnpl_advisor_mobile
+docker compose up -d --build
+```
+
+**Terminal 2 — expose API**
+
+```powershell
+ngrok http 8000
+```
+
+Copy the `https://….ngrok-free.app` URL (no trailing slash).
+
+**Terminal 3 — build & serve web** (bake API URL into the build)
+
+```powershell
+cd bnpl_advisor_mobile
+.\scripts\build_web.ps1 -ApiBase https://YOUR-NGROK-API-ID.ngrok-free.app
+.\scripts\serve_web.ps1
+```
+
+**Terminal 4 — expose web**
+
+```powershell
+ngrok http 8080
+```
+
+Share the **8080** ngrok URL with judges (full app UI). Put the **8000** `/docs` URL in your report as the API link.
+
+Shortcut that prints these steps after Docker starts:
+
+```powershell
+.\scripts\demo_web_public.ps1
+```
+
+### B — Same Wi‑Fi (no ngrok)
+
+Phone and PC on the same network:
+
+```powershell
+cd bnpl_advisor_mobile
+.\scripts\build_web.ps1
+.\start_web_demo.ps1
+```
+
+Open the URL shown (e.g. `http://192.168.x.x:8080`) on the phone browser. Allow Windows Firewall for ports **8000** and **8080** if prompted.
+
+### C — Local dev (your laptop only)
+
+```powershell
+docker compose up -d
+cd mobile_app
+flutter pub get
+flutter run -d chrome
+```
+
+Chrome uses `http://127.0.0.1:8000` for the API automatically on web.
+
+### Web vs APK
+
+| | Web | APK |
+|---|-----|-----|
+| Judge opens link | Yes | Must install |
+| API URL change | Re-run `build_web.ps1 -ApiBase …` | Rebuild APK |
+| CSV upload | Yes (browser) | Yes |
+| Biometrics | No | Yes (optional) |
+
+APK build (optional): see `scripts/serve_apk.ps1` and `mobile_app/README.md`.
+
 ### Backend environment
 
 | Variable | Default (`.env.example`) |
@@ -73,7 +170,62 @@ ML `.pkl` files are baked into the image at `backend/app/ml_models/` (also kept 
 | `GET` | `/sme/{id}/predictions` | Prediction history |
 | `GET` | `/predictions/{id}` | Single prediction detail |
 | `GET` | `/model-metrics` | Demo transparency metrics for the Performance screen |
-| `GET` | `/health` | Liveness |
+| `GET` | `/health` | Liveness + v2 feature flags |
+| `POST` | `/chat` | **v2 RAG** — question over SME transactions + grants/BNPL catalog |
+| `POST` | `/agent/advise` | **v2 LangChain multi-agent** — Grant, BNPL, Cash specialists |
+| `POST` | `/chat/reindex` | Refresh BM25 index after CSV upload |
+
+### v4: APC+ product upgrades
+
+See **[docs/UPGRADES.md](docs/UPGRADES.md)** for the full list. Highlights:
+
+- `POST /compare` — BNPL vs grant vs credit vs cash (+ SST, Islamic filter)
+- Dashboard **alerts**, **runway forecast**, anomaly count
+- **EN / MS** language, **dark mode**, onboarding, offline cache, PDF/share, biometrics
+- Optional **JWT** (`POST /auth/token`, demo password `sme2026`), rate limits, audit log
+- CI (`.github/workflows/ci.yml`), HTTPS nginx example, DB backup script
+
+### v3: Vector DB, unsupervised, bandit, RL, OCR, fine-tune stub
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/sme/{id}/insights` | KMeans cluster + IsolationForest anomalies |
+| `GET` | `/clusters` | All SME cluster assignments |
+| `GET` | `/bandit/stats` | UCB multi-armed bandit arm statistics |
+| `POST` | `/bandit/feedback` | Reward signal after simulation (thumbs up/down in app) |
+| `POST` | `/rl/advise` | Tabular Q-learning policy + bandit blend |
+| `POST` | `/rlhf/preference` | Human preference pair (chosen vs rejected) |
+| `POST` | `/upload-invoice` | Tesseract OCR → parsed transaction rows |
+| `GET` | `/llm/finetune/status` | Fine-tune adapter readiness |
+
+- **Vector RAG:** Chroma + FastEmbed (`USE_VECTOR_RAG=true`, falls back to BM25).
+- **Mobile:** Drawer → **AI Insights** (clusters, anomalies, bandit, invoice OCR).
+- **Train:** optional LightGBM — `pip install lightgbm` then re-run `train_models.py`.
+- **Fine-tune stub:** `python backend/ml_pipeline/scripts/finetune_sme_llm.py`
+
+```powershell
+pip install -r backend/requirements-v3.txt -r backend/requirements-v3-ocr.txt
+docker compose up -d --build
+```
+
+### v2: RAG, LangChain agents, AWS
+
+- **RAG:** BM25 retrieval (`rank-bm25`) over your DB; optional **OpenAI** generative answers when `OPENAI_API_KEY` is set.
+- **Agents:** Three specialists + supervisor; uses existing ML/rules engine as tools.
+- **Mobile:** AI Advisor tab → **RAG Chat** | **Agents** | **ML Insight**.
+- **AWS:** See [`deploy/aws/README.md`](deploy/aws/README.md) and `deploy/aws/docker-compose.prod.yml`.
+
+```powershell
+pip install -r backend/requirements.txt -r backend/requirements-v2.txt
+# Optional
+$env:OPENAI_API_KEY="sk-..."
+```
+
+Production on EC2:
+
+```bash
+docker compose -f docker-compose.yml -f deploy/aws/docker-compose.prod.yml up -d --build
+```
 
 ## Machine learning
 
@@ -104,12 +256,21 @@ flutter run
 - **iOS simulator / desktop:** defaults to `http://127.0.0.1:8000`.
 - **Physical device:** `flutter run --dart-define=API_BASE=http://<your-LAN-IP>:8000`
 
-See `mobile_app/README.md` for UI map (Health / Simulate / AI Advisor / Grants / Performance) and CSV format.
+See `mobile_app/README.md` for UI map (Health / Simulate / AI Advisor with RAG+Agents / Grants / Performance) and CSV format.
 
 ## Scripts
 
-- `start.ps1` — Docker Compose for backend from repo root.
-- `start.sh` — Same for Unix shells.
+| Script | Purpose |
+|--------|---------|
+| `start.ps1` | Docker Compose for backend |
+| `start.sh` | Same (Unix) |
+| `scripts/build_web.ps1` | Build Flutter web (`-ApiBase` for ngrok) |
+| `scripts/serve_web.ps1` | Serve `mobile_app/build/web` on port 8080 |
+| `scripts/demo_web_public.ps1` | Start Docker API + print ngrok/web steps |
+| `deploy/render/README.md` | **Deploy API + DB on Render** (no ngrok) |
+| `start_web_demo.ps1` | API + web on LAN IP (same Wi‑Fi) |
+| `scripts/serve_apk.ps1` | Optional APK download server |
+| `start_phone_demo.ps1` | Optional APK + Docker checklist |
 
 ## Seeded SMEs
 
@@ -131,4 +292,15 @@ bnpl_advisor_mobile/
 └── README.md
 ```
 
+## Competition demo flow (web)
 
+1. **Share the web link** (Render, ngrok `8080`, or LAN `http://<IP>:8080`) — see [Demo with web (recommended)](#demo-with-web-recommended).
+2. Open drawer → **Upload CSV** (sample or your file) for SME 1.
+3. **Health** — KPIs, alerts, chart.
+4. **Simulate** → recommendation → **Compare financing** (drawer) if needed.
+5. **AI Advisor** — RAG chat / agents; **Grants**; **Performance**.
+6. Backup link: API **Swagger** `/docs`.
+
+---
+
+Good luck at **APC2026**.

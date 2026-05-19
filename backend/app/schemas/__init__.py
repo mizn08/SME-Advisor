@@ -19,12 +19,22 @@ class MonthlySeriesPoint(BaseModel):
     expense_rm: float
 
 
+class ForecastMonth(BaseModel):
+    month_offset: int
+    projected_net_rm: float
+    cumulative_net_rm: float
+
+
 class DashboardResponse(BaseModel):
     sme_id: int
     business_name: str
     industry: str
     kpis: DashboardKPIs
     monthly_series: list[MonthlySeriesPoint]
+    runway_days_est: float | None = None
+    forecast_months: list[ForecastMonth] = []
+    alerts: list[str] = []
+    anomaly_count: int = 0
 
 
 class PredictRequest(BaseModel):
@@ -42,6 +52,7 @@ class ShapItem(BaseModel):
 
 
 class PredictResponse(BaseModel):
+    prediction_id: int | None = None
     recommendation_type: str
     product_name: str
     explanation: str
@@ -50,6 +61,8 @@ class PredictResponse(BaseModel):
     confidence: float
     shap_values: list[ShapItem] = []
     ml_probability: float
+    bandit_suggested_arm: str | None = None
+    rl_suggested_action: str | None = None
 
 
 class GovAidOut(BaseModel):
@@ -90,3 +103,148 @@ class PredictionDetailResponse(BaseModel):
     confidence: float
     shap_values: list[ShapItem] = []
     request_payload: dict[str, Any]
+
+
+class ChatRequest(BaseModel):
+    sme_id: int
+    message: str = Field(min_length=1, max_length=2000)
+
+
+class ChatSource(BaseModel):
+    type: str | None = None
+    snippet: str
+
+
+class ChatResponse(BaseModel):
+    sme_id: int
+    message: str
+    answer: str
+    mode: str
+    sources: list[ChatSource] = []
+
+
+class AgentAdviseRequest(BaseModel):
+    sme_id: int
+    purchase_amount: float = Field(gt=0)
+    purchase_category: str
+    goal: str | None = None
+
+
+class AgentInsight(BaseModel):
+    name: str
+    insight: str
+
+
+class AgentAdviseResponse(BaseModel):
+    sme_id: int
+    lead_agent: str
+    summary: str
+    agents: list[AgentInsight]
+    recommendation: dict[str, Any] | None = None
+    rag_snippet: str | None = None
+
+
+class ClusterInfo(BaseModel):
+    sme_id: int
+    cluster_id: int
+    cluster_label: str
+
+
+class AnomaliesBlock(BaseModel):
+    anomalies: list[dict[str, Any]] = []
+    method: str
+    total_flagged: int | None = None
+    message: str | None = None
+
+
+class SmeInsightsResponse(BaseModel):
+    sme_id: int
+    cluster: ClusterInfo | None = None
+    anomalies: AnomaliesBlock
+
+
+class ClusterResponse(BaseModel):
+    clusters: list[ClusterInfo]
+    method: str
+    n_clusters: int
+
+
+class BanditArmStatOut(BaseModel):
+    arm: str
+    pulls: int
+    total_reward: float | None = None
+    avg_reward: float
+
+
+class BanditStatsResponse(BaseModel):
+    arms: list[BanditArmStatOut]
+    suggestion: dict[str, Any]
+
+
+class BanditFeedbackRequest(BaseModel):
+    sme_id: int
+    arm: str
+    accepted: bool
+    prediction_id: int | None = None
+    reward: float | None = None
+
+
+class RlhfPreferenceRequest(BaseModel):
+    sme_id: int
+    chosen: str
+    rejected: str
+
+
+class RlAdviseRequest(BaseModel):
+    sme_id: int
+    purchase_amount: float = Field(gt=0)
+    action: str | None = None
+    reward: float | None = None
+
+
+class RlAdviseResponse(BaseModel):
+    state: str
+    action: str
+    q_values: dict[str, float]
+    bandit_suggestion: str
+    policy: str
+
+
+class CompareOption(BaseModel):
+    type: str
+    product_name: str
+    additional_cost_rm: float
+    cash_preserved_rm: float
+    total_with_sst_rm: float
+    suitability_score: float
+    notes: str
+
+
+class CompareRequest(BaseModel):
+    sme_id: int
+    purchase_amount: float = Field(gt=0)
+    purchase_category: str
+    include_sst: bool = False
+    islamic_only: bool = False
+
+
+class CompareResponse(BaseModel):
+    sme_id: int
+    purchase_amount_rm: float
+    purchase_category: str
+    include_sst: bool
+    sst_estimated_rm: float
+    ml_financing_probability: float
+    recommended: dict[str, str]
+    options: list[CompareOption]
+
+
+class TokenRequest(BaseModel):
+    username: str = "sme_demo"
+    password: str
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    note: str | None = None

@@ -21,6 +21,7 @@ class ShapItem {
 
 class PredictionResult {
   PredictionResult({
+    this.predictionId,
     required this.recommendationType,
     required this.productName,
     required this.explanation,
@@ -29,8 +30,11 @@ class PredictionResult {
     required this.confidence,
     required this.shapValues,
     required this.mlProbability,
+    this.banditSuggestedArm,
+    this.rlSuggestedAction,
   });
 
+  final int? predictionId;
   final String recommendationType;
   final String productName;
   final String explanation;
@@ -39,12 +43,15 @@ class PredictionResult {
   final double confidence;
   final List<ShapItem> shapValues;
   final double mlProbability;
+  final String? banditSuggestedArm;
+  final String? rlSuggestedAction;
 
   factory PredictionResult.fromJson(Map<String, dynamic> j) {
     final shap = (j['shap_values'] as List<dynamic>? ?? [])
         .map((e) => ShapItem.fromJson(e as Map<String, dynamic>))
         .toList();
     return PredictionResult(
+      predictionId: j['prediction_id'] as int?,
       recommendationType: j['recommendation_type'] as String,
       productName: j['product_name'] as String,
       explanation: j['explanation'] as String,
@@ -53,6 +60,8 @@ class PredictionResult {
       confidence: (j['confidence'] as num).toDouble(),
       shapValues: shap,
       mlProbability: (j['ml_probability'] as num).toDouble(),
+      banditSuggestedArm: j['bandit_suggested_arm'] as String?,
+      rlSuggestedAction: j['rl_suggested_action'] as String?,
     );
   }
 }

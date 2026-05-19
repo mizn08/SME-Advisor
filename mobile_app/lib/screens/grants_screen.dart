@@ -55,31 +55,52 @@ class _GrantsScreenState extends State<GrantsScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Funding options', style: Theme.of(context).textTheme.headlineSmall),
+              Text(
+                'Funding Options',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppTheme.textPrimary,
+                    ),
+              ),
+              const SizedBox(height: 4),
               Text(
                 'Compare BNPL with government grants and concessionary schemes.',
-                style: TextStyle(color: Colors.grey.shade700),
+                style: TextStyle(color: Colors.grey.shade500, height: 1.4),
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Wrap(
             spacing: 8,
             children: [
               FilterChip(
+                avatar: Icon(
+                  Icons.verified_rounded,
+                  size: 16,
+                  color: grantsOnly ? AppTheme.teal : Colors.grey.shade400,
+                ),
                 label: const Text('Grants only'),
                 selected: grantsOnly,
+                selectedColor: AppTheme.teal.withOpacity(0.12),
+                checkmarkColor: AppTheme.teal,
                 onSelected: (v) => setState(() => grantsOnly = v),
               ),
               FilterChip(
-                label: const Text('Bumiputera schemes'),
+                avatar: Icon(
+                  Icons.flag_rounded,
+                  size: 16,
+                  color: bumiOnly ? AppTheme.teal : Colors.grey.shade400,
+                ),
+                label: const Text('Bumiputera'),
                 selected: bumiOnly,
+                selectedColor: AppTheme.teal.withOpacity(0.12),
+                checkmarkColor: AppTheme.teal,
                 onSelected: (v) => setState(() => bumiOnly = v),
               ),
             ],
@@ -87,12 +108,23 @@ class _GrantsScreenState extends State<GrantsScreen> {
         ),
         Expanded(
           child: loading
-              ? const Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator(color: AppTheme.teal))
               : err != null
-                  ? Center(child: Text(err!))
+                  ? Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.cloud_off_rounded, size: 40, color: Colors.grey.shade400),
+                          const SizedBox(height: 8),
+                          Text(err!, style: TextStyle(color: Colors.grey.shade600)),
+                        ],
+                      ),
+                    )
                   : RefreshIndicator(
+                      color: AppTheme.teal,
                       onRefresh: _load,
                       child: ListView(
+                        padding: const EdgeInsets.only(bottom: 24),
                         children: [
                           for (final g in _filtered) _card(context, g, currency),
                         ],
@@ -105,52 +137,78 @@ class _GrantsScreenState extends State<GrantsScreen> {
 
   Widget _card(BuildContext context, GovAid g, NumberFormat currency) {
     final isGrant = g.aidType.toLowerCase() == 'grant';
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: isGrant ? AppTheme.teal : Colors.grey.shade300),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return PremiumCard(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      borderColor: isGrant ? AppTheme.teal.withOpacity(0.4) : null,
+      padding: EdgeInsets.zero,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Accent bar for grants
+          if (isGrant)
+            Container(
+              height: 3,
+              decoration: const BoxDecoration(
+                gradient: AppTheme.cardAccentGradient,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(g.schemeName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                      Text(g.agency, style: TextStyle(color: Colors.grey.shade600)),
-                    ],
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            g.schemeName,
+                            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(g.agency, style: TextStyle(color: Colors.grey.shade500, fontSize: 13)),
+                        ],
+                      ),
+                    ),
+                    if (isGrant)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.cardAccentGradient,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          'GRANT',
+                          style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 0.5),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                _grid(g, currency),
+                if (g.description != null) ...[
+                  const SizedBox(height: 10),
+                  Text(g.description!, style: TextStyle(fontSize: 13, color: Colors.grey.shade700, height: 1.4)),
+                ],
+                const SizedBox(height: 14),
+                OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_forward_rounded, size: 16),
+                  label: const Text('View details'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    side: BorderSide(color: AppTheme.teal.withOpacity(0.3)),
+                    foregroundColor: AppTheme.teal,
                   ),
                 ),
-                if (isGrant)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: AppTheme.teal.withOpacity(0.12),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text('GRANT', style: TextStyle(color: AppTheme.teal, fontSize: 11)),
-                  ),
               ],
             ),
-            const SizedBox(height: 12),
-            _grid(g, currency),
-            if (g.description != null) ...[
-              const SizedBox(height: 8),
-              Text(g.description!, style: TextStyle(fontSize: 13, color: Colors.grey.shade800)),
-            ],
-            const SizedBox(height: 12),
-            OutlinedButton(
-              onPressed: () {},
-              child: const Text('View details'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -159,12 +217,19 @@ class _GrantsScreenState extends State<GrantsScreen> {
     final maxAmt = g.maxAmountRm == null ? '—' : currency.format(g.maxAmountRm);
     final rate = g.interestRateLabel ?? '—';
     final tenure = g.tenureMonths == null ? '—' : '${g.tenureMonths} mo';
-    return Table(
-      columnWidths: const {0: FlexColumnWidth(1), 1: FlexColumnWidth(1)},
-      children: [
-        TableRow(children: [_cell('MAX AMOUNT', maxAmt), _cell('INTEREST', rate)]),
-        TableRow(children: [_cell('SPEED', g.approvalSpeedLabel), _cell('TENURE', tenure)]),
-      ],
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Table(
+        columnWidths: const {0: FlexColumnWidth(1), 1: FlexColumnWidth(1)},
+        children: [
+          TableRow(children: [_cell('MAX AMOUNT', maxAmt), _cell('INTEREST', rate)]),
+          TableRow(children: [_cell('SPEED', g.approvalSpeedLabel), _cell('TENURE', tenure)]),
+        ],
+      ),
     );
   }
 
@@ -173,8 +238,12 @@ class _GrantsScreenState extends State<GrantsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(label, style: const TextStyle(fontSize: 10, color: Colors.black45)),
-            Text(value, style: const TextStyle(fontWeight: FontWeight.w600)),
+            Text(
+              label,
+              style: TextStyle(fontSize: 10, color: Colors.grey.shade400, fontWeight: FontWeight.w600, letterSpacing: 0.5),
+            ),
+            const SizedBox(height: 2),
+            Text(value, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
           ],
         ),
       );

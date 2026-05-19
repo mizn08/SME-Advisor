@@ -65,18 +65,38 @@ def main() -> None:
     )
     xgb.fit(X_train, y_train)
 
-    for name, model in (
+    models: list[tuple[str, object]] = [
         ("logistic_regression", lr),
         ("random_forest", rf),
         ("xgboost", xgb),
-    ):
+    ]
+    try:
+        from lightgbm import LGBMClassifier
+
+        lgbm = LGBMClassifier(
+            n_estimators=300,
+            learning_rate=0.05,
+            max_depth=6,
+            class_weight="balanced",
+            random_state=42,
+        )
+        lgbm.fit(X_train, y_train)
+        models.append(("lightgbm", lgbm))
+        print("LightGBM trained.")
+    except ImportError:
+        print("lightgbm not installed — skip (pip install lightgbm)")
+
+    for name, model in models:
         path = MODEL_DIR / f"{name}.pkl"
         joblib.dump(model, path)
         print(f"Saved {path}")
 
     (MODEL_DIR / "feature_order.json").write_text(json.dumps(FEATURE_ORDER), encoding="utf-8")
 
-    for name, model in (("LR", lr), ("RF", rf), ("XGB", xgb)):
+    eval_models = [("LR", lr), ("RF", rf), ("XGB", xgb)]
+    if any(n == "lightgbm" for n, _ in models):
+        eval_models.append(("LGBM", [m for n, m in models if n == "lightgbm"][0]))
+    for name, model in eval_models:
         proba = model.predict_proba(X_test)[:, 1]
         pred = (proba >= 0.5).astype(int)
         acc = accuracy_score(y_test, pred)

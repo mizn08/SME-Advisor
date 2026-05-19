@@ -1,0 +1,6 @@
+{
+  "F&B retail": ["equipment", "inventory", "renovation", "pos_system"],
+  "Agriculture wholesale": ["fertiliser", "machinery", "cold_chain", "logistics"],
+  "IT services": ["cloud", "software", "hardware", "cybersecurity"],
+  "Islamic retail": ["halal_inventory", "equipment", "islamic_bnpl"]
+}

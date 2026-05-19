@@ -1,0 +1,33 @@
+# Render Blueprint — SME Advisor
+# Dashboard: New + → Blueprint → connect repo → path: deploy/render/render.yaml
+# Set root directory to bnpl_advisor_mobile if your repo is the parent folder.
+
+services:
+  - type: web
+    name: sme-advisor-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile.render
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: ML_MODELS_DIR
+        value: /app/backend/app/ml_models
+      - key: USE_VECTOR_RAG
+        value: "false"
+      - key: AUTH_REQUIRED
+        value: "false"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sme-advisor-db
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+
+databases:
+  - name: sme-advisor-db
+    plan: free
+    databaseName: bnpl_db
+    user: bnpl

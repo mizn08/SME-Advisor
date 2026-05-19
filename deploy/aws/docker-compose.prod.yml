@@ -1,0 +1,23 @@
+# Production overrides — use with root docker-compose.yml:
+#   docker compose -f docker-compose.yml -f deploy/aws/docker-compose.prod.yml up -d --build
+
+services:
+  backend:
+    environment:
+      APP_ENV: production
+      AWS_REGION: ${AWS_REGION:-ap-southeast-1}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+
+  db:
+    restart: always
+    volumes:
+      - bnpl_pgdata:/var/lib/postgresql/data
+
+volumes:
+  bnpl_pgdata:

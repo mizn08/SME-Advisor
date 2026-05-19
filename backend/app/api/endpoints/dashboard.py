@@ -10,7 +10,7 @@ from app.schemas import (
     DashboardResponse,
     MonthlySeriesPoint,
 )
-from app.services import data_processor
+from app.services import data_processor, forecast_service, unsupervised_service
 
 router = APIRouter(tags=["dashboard"])
 
@@ -23,10 +23,23 @@ def get_dashboard(sme_id: int, db: Session = Depends(get_db)):
     df = data_processor.load_transactions_df(db, sme_id)
     kpis = data_processor.compute_kpis_from_transactions(df)
     series = [MonthlySeriesPoint(**p) for p in data_processor.monthly_series(df)]
+    fc = forecast_service.forecast_runway(db, sme_id)
+    anomalies = unsupervised_service.detect_anomalies(db, sme_id)
+    alerts: list[str] = []
+    if fc.get("alert"):
+        alerts.append(fc["alert"])
+    if anomalies.get("total_flagged", 0) > 0:
+        alerts.append(f"{anomalies['total_flagged']} unusual transactions detected.")
+    from app.schemas import ForecastMonth
+
     return DashboardResponse(
         sme_id=sme_id,
         business_name=sme.business_name,
         industry=sme.industry,
         kpis=DashboardKPIs(**kpis),
         monthly_series=series,
+        runway_days_est=fc.get("runway_days_est"),
+        forecast_months=[ForecastMonth(**m) for m in fc.get("forecast_months", [])],
+        alerts=alerts,
+        anomaly_count=int(anomalies.get("total_flagged") or 0),
     )

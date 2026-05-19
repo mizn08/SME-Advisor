@@ -34,6 +34,12 @@ services:
       DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-bnpl_db}
       ML_MODELS_DIR: /app/backend/app/ml_models
       UPLOAD_DIR: /app/backend/data/uploads
+      APP_ENV: ${APP_ENV:-development}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      AWS_REGION: ${AWS_REGION:-ap-southeast-1}
+      USE_VECTOR_RAG: ${USE_VECTOR_RAG:-true}
+      CHROMA_PERSIST_DIR: /app/backend/data/chroma
     ports:
       - "${API_PORT:-8000}:8000"
     volumes:
