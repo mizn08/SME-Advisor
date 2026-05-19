@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'api_config_stub.dart' if (dart.library.html) 'api_config_web.dart';
+
 /// Override with `--dart-define=API_BASE=http://192.168.1.10:8000` for physical devices.
 const String _apiFromEnv = String.fromEnvironment('API_BASE');
 
@@ -8,6 +10,8 @@ const String productionApiBase = 'https://sme-advisor-api.onrender.com';
 
 String resolveApiBase() {
   if (_apiFromEnv.isNotEmpty) return _apiFromEnv;
+  final fromMeta = readRuntimeApiBase();
+  if (fromMeta != null && fromMeta.isNotEmpty) return fromMeta;
   if (kIsWeb) {
     final uri = Uri.base;
     final host = uri.host.toLowerCase();

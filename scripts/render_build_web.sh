@@ -21,4 +21,12 @@ flutter pub get
 echo "Building web with API_BASE=${API_BASE}"
 flutter build web --release --dart-define="API_BASE=${API_BASE}"
 
+# Ensure built index.html points at the API (runtime meta + cache-friendly)
+INDEX_HTML="$ROOT/mobile_app/build/web/index.html"
+if [[ -f "$INDEX_HTML" ]]; then
+  sed -i.bak "s|<meta name=\"api-base\" content=\"[^\"]*\">|<meta name=\"api-base\" content=\"${API_BASE}\">|" "$INDEX_HTML"
+  rm -f "${INDEX_HTML}.bak"
+fi
+
 echo "Output: $ROOT/mobile_app/build/web"
+echo "API_BASE in build: ${API_BASE}"
