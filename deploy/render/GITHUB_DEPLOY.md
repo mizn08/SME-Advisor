@@ -63,15 +63,32 @@ Entrypoint auto-fixes `postgres://` if you paste Render’s URL as-is.
 
 Creates API + Postgres in one step. Then set `OPENAI_API_KEY` manually if needed.
 
-## Part 4 — Flutter web (optional)
+## Part 4 — Flutter web (recommended for judges)
 
-On your PC after API is live:
+### Option A — Blueprint / `render.yaml` (easiest)
+
+If you already use the Blueprint, **sync** it after pulling latest `main` — it adds **`sme-advisor-web`** (Static Site) that builds Flutter on Render.
+
+Or create manually:
+
+**New +** → **Static Site** → repo **mizn08/SME-Advisor** → branch `main`
+
+| Setting | Value |
+|---------|--------|
+| **Root Directory** | `bnpl_advisor_mobile` (only if repo root is parent folder) |
+| **Build Command** | `chmod +x ./scripts/render_build_web.sh && ./scripts/render_build_web.sh` |
+| **Publish Directory** | `mobile_app/build/web` |
+| **Environment** | `API_BASE` = `https://sme-advisor-api.onrender.com` |
+
+First build takes ~10–15 min (installs Flutter). Live URL: `https://sme-advisor-web.onrender.com`.
+
+### Option B — Build on your PC
 
 ```powershell
 .\scripts\build_web.ps1 -ApiBase https://sme-advisor-api.onrender.com
 ```
 
-**New +** → **Static Site** → same repo → publish directory `mobile_app/build/web` (commit `build/web` on a `gh-pages` branch or use Netlify drop).
+Then create Static Site with **Publish Directory** `mobile_app/build/web` and **empty build command** only if you commit `build/web` (not recommended).
 
 ## Troubleshooting
 

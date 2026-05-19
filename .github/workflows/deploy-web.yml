@@ -1,0 +1,40 @@
+name: Build Flutter Web
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "mobile_app/**"
+      - "scripts/build_web.ps1"
+      - "scripts/render_build_web.sh"
+      - ".github/workflows/deploy-web.yml"
+  workflow_dispatch:
+
+jobs:
+  build-web:
+    name: Flutter web (Render API)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.x"
+          channel: stable
+          cache: true
+
+      - name: Build web
+        env:
+          API_BASE: https://sme-advisor-api.onrender.com
+        run: |
+          cd mobile_app
+          flutter pub get
+          flutter build web --release --dart-define=API_BASE=$API_BASE
+
+      - name: Upload web artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-web
+          path: mobile_app/build/web
+          retention-days: 7
