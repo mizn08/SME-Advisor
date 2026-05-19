@@ -12,11 +12,11 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /wheels
+WORKDIR /build
 # requirements-render.txt includes -r requirements.txt and -r requirements-v2.txt
-COPY backend/requirements.txt backend/requirements-v2.txt backend/requirements-render.txt /wheels/
+COPY backend/requirements.txt backend/requirements-v2.txt backend/requirements-render.txt /build/
 
-RUN pip wheel --wheel-dir /wheels -r requirements-render.txt
+RUN pip wheel --wheel-dir /wheels -r /build/requirements-render.txt
 
 
 FROM python:3.11-slim
@@ -35,7 +35,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /wheels /wheels
-RUN pip install --no-cache-dir /wheels/* \
+RUN pip install --no-cache-dir /wheels/*.whl \
     && rm -rf /wheels
 
 COPY backend/app /app/backend/app
