@@ -1,18 +1,44 @@
+# Builds the same image Render uses (backend/Dockerfile.render)
 name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Render Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: backend/Dockerfile.render
+          push: false
+          load: true
+          tags: sme-advisor-api:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Smoke test /health
+        run: |
+          docker run -d --name sme-api -p 8000:8000 \
+            -e DATABASE_URL=sqlite:////tmp/ci.db \
+            -e USE_VECTOR_RAG=false \
+            sme-advisor-api:ci
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:8000/health; then
+              echo "Health OK"
+              exit 0
+            fi
+            sleep 5
+          done
+          docker logs sme-api
+          exit 1
