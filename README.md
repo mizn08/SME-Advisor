@@ -2,6 +2,16 @@
 
 End-to-end prototype: **FastAPI + PostgreSQL + scikit-learn / XGBoost** backend and **Flutter** mobile client for Malaysian SME financing decisions (BNPL vs micro-credit vs grants).
 
+## Live demo (Render)
+
+| | URL |
+|---|-----|
+| **Web app** | **https://sme-advisor-web-rk8t.onrender.com/** |
+| **API (Swagger)** | https://sme-advisor-api.onrender.com/docs |
+| **Health** | https://sme-advisor-api.onrender.com/health |
+
+First visit may take ~30–60 s if the free tier was idle (cold start). In the app: menu → **Upload** → **Try sample data** before using Health / Simulate / Grants.
+
 ## Quick start (no Docker — SQLite)
 
 If Docker/PostgreSQL are not installed:
@@ -60,7 +70,7 @@ For **APC / judge demos**, a **website is easier than an APK**: one link, no ins
 
 | Approach | Best for | Link you share |
 |----------|----------|----------------|
-| **Web + Render** | Judges anywhere (stable URL) | `https://….onrender.com` — see [`deploy/render/README.md`](deploy/render/README.md) |
+| **Web + Render** | Judges anywhere (stable URL) | **https://sme-advisor-web-rk8t.onrender.com/** — see [`deploy/render/README.md`](deploy/render/README.md) |
 | **Web + ngrok** | Quick test from your PC | `https://….ngrok-free.app` (Flutter web) |
 | **Swagger only** | Backup / API-focused rubric | `https://….onrender.com/docs` or ngrok `/docs` |
 | **Web on same Wi‑Fi** | Classroom, no ngrok | `http://<your-PC-IP>:8080` |
@@ -76,7 +86,7 @@ Deploy API + Postgres on [Render](https://render.com). Full guide: **[`deploy/re
 4. Build web locally: `.\scripts\build_web.ps1 -ApiBase https://YOUR-SERVICE.onrender.com`
 5. Host `mobile_app/build/web` on Render **Static Site**, Vercel, or Netlify.
 
-Share: app URL + `https://YOUR-SERVICE.onrender.com/docs`
+Share: **https://sme-advisor-web-rk8t.onrender.com/** + https://sme-advisor-api.onrender.com/docs
 
 ### A — Public demo with ngrok (from your PC)
 
@@ -294,7 +304,7 @@ bnpl_advisor_mobile/
 
 ## Competition demo flow (web)
 
-1. **Share the web link** (Render, ngrok `8080`, or LAN `http://<IP>:8080`) — see [Demo with web (recommended)](#demo-with-web-recommended).
+1. **Share the web link:** **https://sme-advisor-web-rk8t.onrender.com/** (or ngrok `8080` / LAN `http://<IP>:8080` for local demos) — see [Demo with web (recommended)](#demo-with-web-recommended).
 2. Open drawer → **Upload CSV** (sample or your file) for SME 1.
 3. **Health** — KPIs, alerts, chart.
 4. **Simulate** → recommendation → **Compare financing** (drawer) if needed.
