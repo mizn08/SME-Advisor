@@ -68,7 +68,14 @@ class ApiService {
         'selected_bnpl_plan': selectedBnplPlan,
       },
     );
-    return PredictionResult.fromJson(res.data!);
+    final data = res.data;
+    if (data == null) {
+      throw DioException(
+        requestOptions: res.requestOptions,
+        message: 'Empty response from /predict',
+      );
+    }
+    return PredictionResult.fromJson(data);
   }
 
   Future<List<GovAid>> fetchGovAid() async {
