@@ -1,13 +1,14 @@
-# Render Blueprint (repo root — required by Render default path)
-# Canonical copy also at deploy/render/render.yaml
+# Render Blueprint — SME Advisor API + Postgres
+# Dashboard: Blueprint → mizn08/SME-Advisor → render.yaml at repo root
 
 services:
   - type: web
     name: sme-advisor-api
     runtime: docker
+    region: singapore
+    plan: free
     dockerfilePath: ./backend/Dockerfile.render
     dockerContext: .
-    plan: free
     healthCheckPath: /health
     envVars:
       - key: APP_ENV
@@ -18,15 +19,20 @@ services:
         value: "false"
       - key: AUTH_REQUIRED
         value: "false"
+      - key: DB_WAIT_ATTEMPTS
+        value: "90"
+      - key: DB_WAIT_INTERVAL
+        value: "3"
       - key: DATABASE_URL
         fromDatabase:
           name: sme-advisor-db
-          property: connectionString
+          property: internalConnectionString
       - key: OPENAI_API_KEY
         sync: false
 
 databases:
   - name: sme-advisor-db
     plan: free
+    region: singapore
     databaseName: bnpl_db
     user: bnpl

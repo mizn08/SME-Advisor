@@ -140,11 +140,17 @@ From repo root, in Render: **New +** → **Blueprint** → point at `deploy/rend
 
 | Issue | Fix |
 |-------|-----|
+| Blueprint: **web service deploy failed** | Open **sme-advisor-api** → **Logs**. Usually DB SSL or build timeout. Latest `render.yaml` uses `internalConnectionString` + `sslmode=require` auto-fix. **Manual Deploy** after pulling latest `main`. |
 | Build timeout | Use `backend/Dockerfile.render` (default in `render.yaml`), not full `Dockerfile` |
-| `postgres://` driver error | Use `postgresql+psycopg2://` in `DATABASE_URL` |
+| `postgres://` driver error | Auto-fixed in entrypoint; or set `postgresql+psycopg2://...?sslmode=require` |
 | 502 on first hit | Wait for cold start; open `/health` first |
 | Web app blank / API errors | Rebuild web with correct `-ApiBase https://....onrender.com` |
 | Uploads / Chroma lost | Free web disk is ephemeral — OK for demo; use Postgres for data |
+
+### If Blueprint sync failed once
+
+1. Render → **SME-Advisor** blueprint → **Manual sync** (or push latest `main` to GitHub).
+2. Or delete failed **sme-advisor-api** web service → **New Web Service** from repo (Docker, `backend/Dockerfile.render`) and link existing **sme-advisor-db** `DATABASE_URL` (Internal URL).
 
 ---
 

@@ -51,7 +51,9 @@ class Settings(BaseSettings):
     @property
     def sqlalchemy_database_uri(self) -> str:
         if self.DATABASE_URL:
-            return self.DATABASE_URL
+            from app.db.url_normalize import normalize_database_url
+
+            return normalize_database_url(self.DATABASE_URL)
         return (
             f"postgresql+psycopg2://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
             f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"

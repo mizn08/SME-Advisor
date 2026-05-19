@@ -41,6 +41,7 @@ COPY backend/app /app/backend/app
 COPY backend/app/data /app/backend/app/data
 COPY backend/docker-entrypoint.sh /app/backend/docker-entrypoint.sh
 COPY scripts /app/scripts
+COPY scripts/normalize_db_url.py /app/scripts/normalize_db_url.py
 
 # Only runtime artefacts (not training notebooks / large CSVs)
 COPY backend/app/ml_models /app/backend/app/ml_models
