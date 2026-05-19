@@ -301,6 +301,4 @@ bnpl_advisor_mobile/
 5. **AI Advisor** — RAG chat / agents; **Grants**; **Performance**.
 6. Backup link: API **Swagger** `/docs`.
 
----
 
-Good luck at **APC2026**.
