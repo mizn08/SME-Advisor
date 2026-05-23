@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'providers/recommendation_provider.dart';
 import 'providers/settings_provider.dart';
 import 'providers/session_provider.dart';
-import 'screens/onboarding_screen.dart';
+import 'screens/profile_quiz_screen.dart';
 import 'screens/shell_screen.dart';
 import 'theme/app_theme.dart';
 
@@ -94,7 +94,7 @@ class _RootGateState extends State<_RootGate> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (!widget.settings.onboarded) {
-      return const OnboardingScreen();
+      return const ProfileQuizScreen();
     }
     return const ShellScreen();
   }

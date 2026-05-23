@@ -9,7 +9,9 @@ import 'grants_screen.dart';
 import 'performance_screen.dart';
 import 'simulator_screen.dart';
 import 'compare_screen.dart';
+import 'grant_eligibility_screen.dart';
 import 'insights_screen.dart';
+import 'scenario_planner_screen.dart';
 import 'settings_screen.dart';
 import 'upload_screen.dart';
 import '../providers/settings_provider.dart';
@@ -277,6 +279,37 @@ class _ShellScreenState extends State<ShellScreen> {
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const CompareScreen()));
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ListTile(
+                  leading: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: AppTheme.teal.withOpacity(0.08), borderRadius: BorderRadius.circular(10)),
+                    child: const Icon(Icons.verified_rounded, color: AppTheme.teal, size: 20),
+                  ),
+                  title: const Text('Grant eligibility'),
+                  subtitle: Text('Budget 2026 rules engine', style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const GrantEligibilityScreen()));
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ListTile(
+                  leading: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: AppTheme.teal.withOpacity(0.08), borderRadius: BorderRadius.circular(10)),
+                    child: const Icon(Icons.tune_rounded, color: AppTheme.teal, size: 20),
+                  ),
+                  title: const Text('What-if planner'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const ScenarioPlannerScreen()));
                   },
                 ),
               ),

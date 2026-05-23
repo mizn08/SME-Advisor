@@ -35,6 +35,9 @@ class DashboardResponse(BaseModel):
     forecast_months: list[ForecastMonth] = []
     alerts: list[str] = []
     anomaly_count: int = 0
+    health_score: int | None = None
+    health_grade: str | None = None
+    health_label: str | None = None
 
 
 class PredictRequest(BaseModel):
@@ -108,6 +111,10 @@ class PredictionDetailResponse(BaseModel):
 class ChatRequest(BaseModel):
     sme_id: int
     message: str = Field(min_length=1, max_length=2000)
+    persona: str | None = Field(
+        default=None,
+        description="Advisor tone: banker | towkay | mdec",
+    )
 
 
 class ChatSource(BaseModel):

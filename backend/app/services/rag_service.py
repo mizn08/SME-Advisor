@@ -50,7 +50,20 @@ def _retrieve(db: Session, sme_id: int, question: str) -> tuple[list[Document], 
     return retriever.invoke(question), "bm25"
 
 
-def _template_answer(question: str, docs: list[Document]) -> str:
+_PERSONA_PREFIX = {
+    "banker": "Puan Sarah (conservative banker): ",
+    "towkay": "Uncle Ah Kow (experienced towkay): ",
+    "mdec": "Dr Aisha (MDEC digital consultant): ",
+}
+
+
+def _persona_prefix(persona: str | None) -> str:
+    if not persona:
+        return ""
+    return _PERSONA_PREFIX.get(persona.lower(), "")
+
+
+def _template_answer(question: str, docs: list[Document], persona: str | None = None) -> str:
     if not docs:
         return "I do not have enough indexed data yet. Upload a CSV on the Health tab first."
     bullets = []
@@ -58,29 +71,34 @@ def _template_answer(question: str, docs: list[Document]) -> str:
         src = d.metadata.get("type", "info")
         bullets.append(f"{i}. [{src}] {d.page_content[:280]}")
     context = "\n".join(bullets)
-    return (
+    body = (
         f"Question: {question}\n\n"
         "Here is what I found in your SME Advisor knowledge base:\n\n"
         f"{context}\n\n"
         "Tip: Run the Purchase Simulator for a formal financing recommendation with ML scores."
     )
+    return _persona_prefix(persona) + body
 
 
-def _openai_answer(question: str, docs: list[Document]) -> str:
+def _openai_answer(question: str, docs: list[Document], persona: str | None = None) -> str:
     settings = get_settings()
     if not settings.OPENAI_API_KEY:
-        return _template_answer(question, docs)
+        return _template_answer(question, docs, persona)
     try:
         from langchain_openai import ChatOpenAI
         from langchain_core.prompts import ChatPromptTemplate
 
         context = "\n\n".join(d.page_content for d in docs[:5])
+        persona_system = {
+            "banker": "You are Puan Sarah, a conservative Malaysian banker. Formal, risk-aware, cite reserves and compliance.",
+            "towkay": "You are Uncle Ah Kow, a seasoned Malaysian SME towkay. Practical, direct, mix light Manglish.",
+            "mdec": "You are Dr Aisha, an MDEC digitalisation consultant. Focus on grants, tech adoption, and digital tools.",
+        }.get((persona or "").lower(), "You are SME Advisor for Malaysian SMEs.")
         prompt = ChatPromptTemplate.from_messages(
             [
                 (
                     "system",
-                    "You are SME Advisor for Malaysian SMEs. Answer using ONLY the context. "
-                    "Mention RM amounts when relevant. Be concise and practical.",
+                    persona_system + " Answer using ONLY the context. Mention RM when relevant. Be concise.",
                 ),
                 ("human", "Context:\n{context}\n\nQuestion: {question}"),
             ]
@@ -89,17 +107,17 @@ def _openai_answer(question: str, docs: list[Document]) -> str:
         msg = chain.invoke({"context": context, "question": question})
         return str(msg.content)
     except Exception as exc:  # noqa: BLE001
-        return _template_answer(question, docs) + f"\n\n(OpenAI unavailable: {exc})"
+        return _template_answer(question, docs, persona) + f"\n\n(OpenAI unavailable: {exc})"
 
 
-def rag_query(db: Session, sme_id: int, question: str) -> dict[str, Any]:
+def rag_query(db: Session, sme_id: int, question: str, persona: str | None = None) -> dict[str, Any]:
     docs, retrieval_mode = _retrieve(db, sme_id, question)
     settings = get_settings()
     if settings.OPENAI_API_KEY:
-        answer = _openai_answer(question, docs)
+        answer = _openai_answer(question, docs, persona)
         mode = f"{retrieval_mode}+openai"
     else:
-        answer = _template_answer(question, docs)
+        answer = _template_answer(question, docs, persona)
         mode = retrieval_mode
 
     sources = [{"type": d.metadata.get("type"), "snippet": d.page_content[:200]} for d in docs]

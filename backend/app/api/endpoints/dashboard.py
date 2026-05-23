@@ -10,7 +10,7 @@ from app.schemas import (
     DashboardResponse,
     MonthlySeriesPoint,
 )
-from app.services import data_processor, forecast_service, unsupervised_service
+from app.services import data_processor, forecast_service, health_score_service, unsupervised_service
 
 router = APIRouter(tags=["dashboard"])
 
@@ -32,6 +32,9 @@ def get_dashboard(sme_id: int, db: Session = Depends(get_db)):
         alerts.append(f"{anomalies['total_flagged']} unusual transactions detected.")
     from app.schemas import ForecastMonth
 
+    health = health_score_service.compute_health_score(
+        kpis, fc.get("runway_days_est"), int(anomalies.get("total_flagged") or 0)
+    )
     return DashboardResponse(
         sme_id=sme_id,
         business_name=sme.business_name,
@@ -42,4 +45,7 @@ def get_dashboard(sme_id: int, db: Session = Depends(get_db)):
         forecast_months=[ForecastMonth(**m) for m in fc.get("forecast_months", [])],
         alerts=alerts,
         anomaly_count=int(anomalies.get("total_flagged") or 0),
+        health_score=health["health_score"],
+        health_grade=health["health_grade"],
+        health_label=health["health_label"],
     )

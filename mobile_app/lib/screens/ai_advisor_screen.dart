@@ -22,6 +22,7 @@ class _AiAdvisorScreenState extends State<AiAdvisorScreen> with SingleTickerProv
   final _api = ApiService();
   final List<ChatTurn> _history = [];
   bool _chatBusy = false;
+  String? _persona;
   AgentAdvice? _agentAdvice;
   bool _agentBusy = false;
   String? _err;
@@ -58,7 +59,7 @@ class _AiAdvisorScreenState extends State<AiAdvisorScreen> with SingleTickerProv
     });
     try {
       final sid = context.read<SessionProvider>().smeId;
-      final res = await _api.chat(smeId: sid, message: text);
+      final res = await _api.chat(smeId: sid, message: text, persona: _persona);
       if (!mounted) return;
       setState(() {
         _history.add(
@@ -136,6 +137,17 @@ class _AiAdvisorScreenState extends State<AiAdvisorScreen> with SingleTickerProv
     );
   }
 
+  Widget _personaChip(String label, String id) {
+    final selected = _persona == id;
+    return FilterChip(
+      label: Text(label, style: const TextStyle(fontSize: 12)),
+      selected: selected,
+      onSelected: (v) => setState(() => _persona = v ? id : null),
+      selectedColor: AppTheme.teal.withOpacity(0.2),
+      checkmarkColor: AppTheme.teal,
+    );
+  }
+
   Widget _chatTab() {
     return Column(
       children: [
@@ -163,6 +175,17 @@ class _AiAdvisorScreenState extends State<AiAdvisorScreen> with SingleTickerProv
           ),
         ),
         if (_chatBusy) const LinearProgressIndicator(minHeight: 2),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Wrap(
+            spacing: 8,
+            children: [
+              _personaChip('Puan Sarah', 'banker'),
+              _personaChip('Uncle Ah Kow', 'towkay'),
+              _personaChip('Dr Aisha', 'mdec'),
+            ],
+          ),
+        ),
         SafeArea(
           top: false,
           child: Padding(

@@ -9,10 +9,13 @@ from app.api.endpoints import (
     chat,
     compare,
     dashboard,
+    grants,
     history,
     insights,
     metrics,
     predict,
+    profile,
+    report,
     upload,
 )
 
@@ -21,6 +24,9 @@ api_router.include_router(auth.router)
 api_router.include_router(upload.router)
 api_router.include_router(compare.router)
 api_router.include_router(catalog.router)
+api_router.include_router(grants.router)
+api_router.include_router(profile.router)
+api_router.include_router(report.router)
 api_router.include_router(dashboard.router)
 api_router.include_router(predict.router)
 api_router.include_router(history.router)

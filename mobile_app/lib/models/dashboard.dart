@@ -26,6 +26,9 @@ class DashboardData {
     this.runwayDaysEst,
     this.alerts = const [],
     this.anomalyCount = 0,
+    this.healthScore,
+    this.healthGrade,
+    this.healthLabel,
   });
 
   final int smeId;
@@ -41,6 +44,9 @@ class DashboardData {
   final double? runwayDaysEst;
   final List<String> alerts;
   final int anomalyCount;
+  final int? healthScore;
+  final String? healthGrade;
+  final String? healthLabel;
 
   factory DashboardData.fromJson(Map<String, dynamic> j) {
     final kpis = j['kpis'] as Map<String, dynamic>;
@@ -61,6 +67,9 @@ class DashboardData {
       runwayDaysEst: (j['runway_days_est'] as num?)?.toDouble(),
       alerts: (j['alerts'] as List<dynamic>? ?? []).map((e) => e.toString()).toList(),
       anomalyCount: j['anomaly_count'] as int? ?? 0,
+      healthScore: j['health_score'] as int?,
+      healthGrade: j['health_grade'] as String?,
+      healthLabel: j['health_label'] as String?,
     );
   }
 }

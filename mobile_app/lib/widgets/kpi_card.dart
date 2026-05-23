@@ -74,10 +74,16 @@ class KPICard extends StatelessWidget {
 
 /// Animated donut-style health score
 class HealthScoreGauge extends StatefulWidget {
-  const HealthScoreGauge({super.key, required this.score, required this.label});
+  const HealthScoreGauge({
+    super.key,
+    required this.score,
+    required this.label,
+    this.letterGrade,
+  });
 
   final int score;
   final String label;
+  final String? letterGrade;
 
   @override
   State<HealthScoreGauge> createState() => _HealthScoreGaugeState();
@@ -143,6 +149,15 @@ class _HealthScoreGaugeState extends State<HealthScoreGauge> with SingleTickerPr
                       height: 1,
                     ),
                   ),
+                  if (widget.letterGrade != null)
+                    Text(
+                      'Grade ${widget.letterGrade}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: scoreColor,
+                      ),
+                    ),
                   const SizedBox(height: 4),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),

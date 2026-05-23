@@ -16,7 +16,7 @@ def chat(payload: ChatRequest, db: Session = Depends(get_db)):
     sme = db.query(SMEProfile).filter(SMEProfile.id == payload.sme_id).first()
     if not sme:
         raise HTTPException(404, "SME not found")
-    result = rag_service.rag_query(db, payload.sme_id, payload.message)
+    result = rag_service.rag_query(db, payload.sme_id, payload.message, payload.persona)
     return ChatResponse(
         sme_id=payload.sme_id,
         message=payload.message,

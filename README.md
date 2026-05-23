@@ -305,10 +305,11 @@ bnpl_advisor_mobile/
 ## Competition demo flow (web)
 
 1. **Share the web link:** **https://sme-advisor-web-rk8t.onrender.com/** (or ngrok `8080` / LAN `http://<IP>:8080` for local demos) — see [Demo with web (recommended)](#demo-with-web-recommended).
-2. Open drawer → **Upload CSV** (sample or your file) for SME 1.
-3. **Health** — KPIs, alerts, chart.
-4. **Simulate** → recommendation → **Compare financing** (drawer) if needed.
-5. **AI Advisor** — RAG chat / agents; **Grants**; **Performance**.
-6. Backup link: API **Swagger** `/docs`.
+2. First launch: **5-question profile quiz** (or drawer → **Upload** → **Try sample data**).
+3. **Health** — **SME Readiness Score** (0–100 + letter grade), compliance countdown, **Generate bank / grant PDF**.
+4. Drawer → **Grant eligibility** (Budget 2026 rules) · **What-if planner** (sliders).
+5. **Simulate** → recommendation → **Compare financing** if needed.
+6. **AI Advisor** — pick persona (Puan Sarah / Uncle Ah Kow / Dr Aisha) · RAG chat / agents.
+7. **Grants** · **Performance** · backup API: https://sme-advisor-api.onrender.com/docs
 
 

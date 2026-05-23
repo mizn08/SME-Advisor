@@ -1,11 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../models/dashboard.dart';
 import '../providers/session_provider.dart';
 import '../services/api_service.dart';
+import '../services/pdf_report_service.dart';
 import '../theme/app_theme.dart';
+import '../widgets/compliance_countdown_widget.dart';
 import '../widgets/kpi_card.dart';
 import '../widgets/monthly_chart.dart';
 
@@ -68,6 +72,15 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     if (s >= 75) return 'GOOD';
     if (s >= 55) return 'FAIR';
     return 'WATCH';
+  }
+
+  String _letterGrade(int s) {
+    if (s >= 90) return 'A';
+    if (s >= 80) return 'B';
+    if (s >= 70) return 'C';
+    if (s >= 60) return 'D';
+    if (s >= 50) return 'E';
+    return 'F';
   }
 
   @override
@@ -145,9 +158,30 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
+  Future<void> _downloadReport(BuildContext context, DashboardData d) async {
+    try {
+      final report = await ApiService().fetchReport(d.smeId);
+      final bytes = await PdfReportService.buildFullReportBytes(report);
+      if (kIsWeb) {
+        await Share.shareXFiles([XFile.fromData(bytes, name: 'sme_advisor_report.pdf', mimeType: 'application/pdf')]);
+      } else {
+        final file = await PdfReportService.saveFullReport(report);
+        await Share.shareXFiles([XFile(file.path)], text: 'SME Advisor — bank / grant pack');
+      }
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Report ready to share')));
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$e')));
+      }
+    }
+  }
+
   Widget _body(BuildContext context, DashboardData d, NumberFormat currency) {
-    final score = _healthScore(d);
-    final label = _healthLabel(score);
+    final score = d.healthScore ?? _healthScore(d);
+    final label = d.healthLabel ?? _healthLabel(score);
+    final grade = d.healthGrade ?? _letterGrade(score);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -167,31 +201,28 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
               ),
             ),
           ),
-        // ── Health score hero card ──
+        const ComplianceCountdownWidget(),
         PremiumCard(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             children: [
-              HealthScoreGauge(score: score, label: label),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: AppTheme.iceBlue.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.info_outline_rounded, color: AppTheme.teal, size: 18),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        'Business credit health snapshot. Maintain cash reserves aligned to burn rate.',
-                        style: TextStyle(color: Colors.grey.shade700, fontSize: 13, height: 1.4),
-                      ),
-                    ),
-                  ],
-                ),
+              Text(
+                'SME Readiness Score',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Like a credit score for financial readiness',
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+              ),
+              const SizedBox(height: 8),
+              HealthScoreGauge(score: score, label: label, letterGrade: grade),
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                onPressed: () => _downloadReport(context, d),
+                icon: const Icon(Icons.picture_as_pdf_outlined, size: 18),
+                label: const Text('Generate bank / grant PDF'),
+                style: FilledButton.styleFrom(backgroundColor: AppTheme.teal),
               ),
             ],
           ),

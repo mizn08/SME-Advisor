@@ -98,12 +98,75 @@ class ApiService {
     return res.data ?? {};
   }
 
-  Future<ChatResponse> chat({required int smeId, required String message}) async {
+  Future<ChatResponse> chat({
+    required int smeId,
+    required String message,
+    String? persona,
+  }) async {
     final res = await _dio.post<Map<String, dynamic>>(
       '/chat',
-      data: {'sme_id': smeId, 'message': message},
+      data: {
+        'sme_id': smeId,
+        'message': message,
+        if (persona != null) 'persona': persona,
+      },
     );
     return ChatResponse.fromJson(res.data ?? {});
+  }
+
+  Future<Map<String, dynamic>> onboardProfile({
+    int smeId = 1,
+    required String sector,
+    required double revenueRm,
+    required int employeeCount,
+    bool sstRegistered = false,
+    double cashReserveMonths = 2,
+    bool bumiputera = false,
+    bool techFocus = false,
+  }) async {
+    final res = await _dio.post<Map<String, dynamic>>(
+      '/profile/onboard',
+      data: {
+        'sme_id': smeId,
+        'sector': sector,
+        'revenue_rm': revenueRm,
+        'employee_count': employeeCount,
+        'sst_registered': sstRegistered,
+        'cash_reserve_months': cashReserveMonths,
+        'bumiputera': bumiputera,
+        'tech_focus': techFocus,
+      },
+    );
+    return res.data ?? {};
+  }
+
+  Future<Map<String, dynamic>> grantEligibility({
+    int? smeId,
+    bool bumiputera = false,
+    double revenueRm = 0,
+    String sector = '',
+    bool ssmRegistered = true,
+    bool techFocus = false,
+    bool exportIntent = false,
+  }) async {
+    final res = await _dio.post<Map<String, dynamic>>(
+      '/grants/eligibility',
+      data: {
+        if (smeId != null) 'sme_id': smeId,
+        'bumiputera': bumiputera,
+        'revenue_rm': revenueRm,
+        'sector': sector,
+        'ssm_registered': ssmRegistered,
+        'tech_focus': techFocus,
+        'export_intent': exportIntent,
+      },
+    );
+    return res.data ?? {};
+  }
+
+  Future<Map<String, dynamic>> fetchReport(int smeId) async {
+    final res = await _dio.get<Map<String, dynamic>>('/sme/$smeId/report');
+    return res.data ?? {};
   }
 
   Future<Map<String, dynamic>> fetchInsights(int smeId) async {
