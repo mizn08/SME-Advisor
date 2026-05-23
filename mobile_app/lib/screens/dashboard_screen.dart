@@ -7,7 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import '../models/dashboard.dart';
 import '../providers/session_provider.dart';
 import '../services/api_service.dart';
-import '../services/pdf_report_service.dart';
+import '../services/pdf_report_service.dart' show PdfReportService, writePdfBytes;
 import '../theme/app_theme.dart';
 import '../widgets/compliance_countdown_widget.dart';
 import '../widgets/kpi_card.dart';
@@ -163,9 +163,11 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
       final report = await ApiService().fetchReport(d.smeId);
       final bytes = await PdfReportService.buildFullReportBytes(report);
       if (kIsWeb) {
-        await Share.shareXFiles([XFile.fromData(bytes, name: 'sme_advisor_report.pdf', mimeType: 'application/pdf')]);
+        await Share.shareXFiles([
+          XFile.fromData(bytes, name: 'sme_advisor_report.pdf', mimeType: 'application/pdf'),
+        ], text: 'SME Advisor — bank / grant pack');
       } else {
-        final file = await PdfReportService.saveFullReport(report);
+        final file = await writePdfBytes(bytes, 'sme_advisor_full_report.pdf');
         await Share.shareXFiles([XFile(file.path)], text: 'SME Advisor — bank / grant pack');
       }
       if (context.mounted) {

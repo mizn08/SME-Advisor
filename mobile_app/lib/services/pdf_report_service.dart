@@ -1,19 +1,15 @@
-import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 import '../models/prediction.dart';
+import 'pdf_report_service_stub.dart' if (dart.library.io) 'pdf_report_service_io.dart';
+
+export 'pdf_report_service_stub.dart' if (dart.library.io) 'pdf_report_service_io.dart' show writePdfBytes;
 
 class PdfReportService {
-  static Future<File> buildRecommendationPdf(PredictionResult r, String businessName) async {
-    final doc = _recommendationDoc(r, businessName);
-    final dir = await getTemporaryDirectory();
-    final file = File('${dir.path}/sme_advisor_report.pdf');
-    await file.writeAsBytes(await doc.save());
-    return file;
+  static Future<Uint8List> buildRecommendationPdfBytes(PredictionResult r, String businessName) async {
+    return _recommendationDoc(r, businessName).save();
   }
 
   static pw.Document _recommendationDoc(PredictionResult r, String businessName) {
@@ -42,16 +38,12 @@ class PdfReportService {
   }
 
   static Future<Uint8List> buildFullReportBytes(Map<String, dynamic> report) async {
-    final doc = _fullReportDoc(report);
-    return doc.save();
+    return _fullReportDoc(report).save();
   }
 
-  static Future<File> saveFullReport(Map<String, dynamic> report) async {
+  static Future<dynamic> saveFullReport(Map<String, dynamic> report) async {
     final bytes = await buildFullReportBytes(report);
-    final dir = await getTemporaryDirectory();
-    final file = File('${dir.path}/sme_advisor_full_report.pdf');
-    await file.writeAsBytes(bytes);
-    return file;
+    return writePdfBytes(bytes, 'sme_advisor_full_report.pdf');
   }
 
   static pw.Document _fullReportDoc(Map<String, dynamic> report) {

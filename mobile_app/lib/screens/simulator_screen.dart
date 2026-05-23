@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -5,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../providers/recommendation_provider.dart';
 import '../providers/session_provider.dart';
 import '../services/api_service.dart';
-import '../services/pdf_report_service.dart';
+import '../services/pdf_report_service.dart' show PdfReportService, writePdfBytes;
 import '../theme/app_theme.dart';
 import '../widgets/recommendation_result.dart';
 
@@ -162,18 +163,32 @@ class _SimulatorScreenState extends State<SimulatorScreen> {
                     children: [
                       TextButton.icon(
                         onPressed: () async {
-                          final file = await PdfReportService.buildRecommendationPdf(res, 'SME');
-                          await Share.shareXFiles([XFile(file.path)], text: 'SME Advisor report');
+                          final bytes = await PdfReportService.buildRecommendationPdfBytes(res, 'SME');
+                          if (kIsWeb) {
+                            await Share.shareXFiles([
+                              XFile.fromData(bytes, name: 'sme_advisor_report.pdf', mimeType: 'application/pdf'),
+                            ], text: 'SME Advisor report');
+                          } else {
+                            final file = await writePdfBytes(bytes, 'sme_advisor_report.pdf');
+                            await Share.shareXFiles([XFile(file.path)], text: 'SME Advisor report');
+                          }
                         },
                         icon: const Icon(Icons.share_rounded, size: 18),
                         label: const Text('Share'),
                       ),
                       TextButton.icon(
                         onPressed: () async {
-                          await PdfReportService.buildRecommendationPdf(res, 'SME');
+                          final bytes = await PdfReportService.buildRecommendationPdfBytes(res, 'SME');
+                          if (kIsWeb) {
+                            await Share.shareXFiles([
+                              XFile.fromData(bytes, name: 'sme_advisor_report.pdf', mimeType: 'application/pdf'),
+                            ]);
+                          } else {
+                            await writePdfBytes(bytes, 'sme_advisor_report.pdf');
+                          }
                           if (ctx.mounted) {
                             ScaffoldMessenger.of(ctx).showSnackBar(
-                              const SnackBar(content: Text('PDF saved to app temp folder')),
+                              const SnackBar(content: Text('PDF ready')),
                             );
                           }
                         },

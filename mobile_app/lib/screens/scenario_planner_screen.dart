@@ -31,7 +31,9 @@ class _ScenarioPlannerScreenState extends State<ScenarioPlannerScreen> {
       final beforeHealth = dash.healthScore ?? _estimateHealth(dash.daysCashOnHand, beforeRunway);
 
       final impact = _extraPayroll * 3 + _loanRm * 0.02 * 12;
-      final afterRunway = (beforeRunway - impact / ((dash.burnRateMonthlyRm / 30).clamp(1, 9999))).clamp(0, 9999);
+      final afterRunway = (beforeRunway - impact / ((dash.burnRateMonthlyRm / 30).clamp(1, 9999)))
+          .clamp(0, 9999)
+          .toDouble();
       final afterHealth = (beforeHealth - (impact / 50000).round()).clamp(0, 100);
 
       if (_purchaseRm > 0) {
